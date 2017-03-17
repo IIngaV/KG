@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import com.example.asus.lab.DrawView;
 
 import static java.lang.StrictMath.abs;
+import static java.lang.StrictMath.max;
+import static java.lang.StrictMath.signum;
 
 /**
  * Created by a s u s on 11.03.2017.
@@ -14,6 +16,7 @@ import static java.lang.StrictMath.abs;
 
 public class DrawLineBr {
     private float x1,x2,y1,y2;
+    private DrawView drawView;
 
     public float getX1(){
         return x1;
@@ -42,21 +45,60 @@ public class DrawLineBr {
 
     public void drawLineBr(Canvas canvas , Paint p){
         p.setStrokeWidth(5);
-        p.setColor(Color.RED);
-        float absx=abs(x2-x1);
-        float absy=abs(y2-y1);
-        float spec=absx;
-        if(absy>absx){
-            spec=absy;
+        p.setColor(Color.GREEN);
+        float x=x1;
+        float y=y1;
+        float dx=Math.abs(x2-x1);
+        float dy=Math.abs(y2-y1);
+        float s1=signum(x2-x1);
+        float s2=signum(y2-y1);
+        /*if ((x2-x1)>=0){
+            s1=x2-x1;
         }
-        float dx=(x2-x1)/spec;
-        float dy=(y2-y1)/spec;
-        float x=x1,y=y1;
-        for(int i=0; i<(int)spec;i++){
+        else{
+            s1=-(x2-x1);
+        }
+        if ((y2-y1)>=0){
+            s2=y2-y1;
+        }
+        else{
+            s2=-(y2-y1);
+        }*/
+        boolean swap=false;
+        float c;
+        float dc1;
+        float dc2;
+        float d;
+        if(dy>dx){
+            d=dy;
+            dy=dx;
+            dx=d;
+            swap=true;
+        }
+
+        c=2*dy-dx;
+        dc1=2*dy;
+        dc2=2*dx;
+        for(int i=1;i<=dx;i++){
             canvas.drawPoint(x,y,p);
-            x+=dx;
-            y+=dy;
+            while(c>=0){
+                if(swap){
+                    x=x+s1;
+                }
+                else{
+                    y=y+s2;
+                }
+                c=c-dc2;
+            }
+            if(swap){
+                y=y+s2;
+            }
+            else{
+                x=x+s1;
+            }
+            c=c+dc1;
         }
+
 
     }
 }

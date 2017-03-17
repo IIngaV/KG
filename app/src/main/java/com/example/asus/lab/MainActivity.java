@@ -126,7 +126,8 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                             Toast.LENGTH_SHORT);
                     toast4.setGravity(Gravity.CENTER, 0, 0);
                     toast4.show();
-                    drawView.drawPoint1(x, y);
+                    DrawView.instrument=1;
+                    //drawView.drawPoint(x, y);
                     return true;
                 case R.id.action_rubber:
                     Toast toast5= Toast.makeText(getApplicationContext(),
@@ -134,7 +135,8 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                             Toast.LENGTH_SHORT);
                     toast5.setGravity(Gravity.CENTER, 0, 0);
                     toast5.show();
-                    drawView.drawRubber(x, y);
+                    DrawView.instrument=9;
+                    ///drawView.drawRubber(x, y);
                     return true;
 
                 case R.id.action_line_br:
@@ -143,7 +145,8 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                             Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
-                    DrawLineBr.drawLineBr(canvas, p);
+                    DrawView.instrument=2;
+                    //dlb.drawLineBr(canvas, p);
                     return true;
 
                 case R.id.action_line_param:
@@ -152,7 +155,8 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                             Toast.LENGTH_SHORT);
                     toast1.setGravity(Gravity.CENTER, 0, 0);
                     toast1.show();
-                    drawView.drawLineParam(x3,y,x4,y1);
+                    DrawView.instrument=3;
+                    //drawView.drawLineParam(x3,y,x4,y1);
                     return true;
                 case R.id.action_circle_br:
                     Toast toast2 = Toast.makeText(getApplicationContext(),
@@ -160,6 +164,7 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                             Toast.LENGTH_SHORT);
                     toast2.setGravity(Gravity.CENTER, 0, 0);
                     toast2.show();
+                    DrawView.instrument=5;
                     //drawView.drawLineBr();
                     return true;
                 case R.id.action_circle_param:
@@ -168,7 +173,8 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                     Toast.LENGTH_SHORT);
                     toast3.setGravity(Gravity.CENTER, 0, 0);
                     toast3.show();
-                    drawView.drawCircleParam(x3,y3,x4,y4);
+                    DrawView.instrument=4;
+                   // drawView.drawCircleParam(x3,y3,x4,y4);
                     return true;
 
              }

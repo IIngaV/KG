@@ -10,6 +10,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.asus.lab.figure.Optional;
+import com.example.asus.lab.figure.circle.DrawCircleBr;
+import com.example.asus.lab.figure.circle.DrawCircleParam;
+import com.example.asus.lab.figure.line.DrawLineBr;
+import com.example.asus.lab.figure.line.DrawLineParam;
+
 import static java.lang.Math.round;
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.cos;
@@ -24,38 +30,42 @@ import static java.lang.StrictMath.sqrt;
 public class DrawView extends View {
     private Canvas canvas;
     private Bitmap bitmap;
+    public static int instrument=0;
     float lastX;
     float lastY;
+    private DrawLineBr drawLineBr;
+    private DrawLineParam drawLineParam;
+    private DrawCircleParam drawCircleParam;
+    private DrawCircleBr drawCircleBr;
+    private DrawView drawView;
+    private Optional optional;
+    int kol=0;
 
     private Paint p;
-    Paint p1;
-    Paint p2;
-    TextView tv;
-    float x;
-    float y;
-    String sDown;
-    String sMove;
-    String sUp;
+
 
 
     public DrawView(Context context) {
         super(context);
-        p = new Paint();
-        p1 = new Paint();
-        p2 = new Paint();
+        //p = new Paint();
+
 
     }
 
-    public DrawView(Context context, AttributeSet atts) {
-        super(context, atts);
+    public DrawView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         p = new Paint();
         p.setStrokeWidth(5);
         bitmap = Bitmap.createBitmap(700, 1000, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
+        drawLineBr=new DrawLineBr();
+        drawLineParam=new DrawLineParam();
+        drawCircleParam=new DrawCircleParam();
+        drawCircleBr=new DrawCircleBr();
     }
 
     protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(bitmap, x, y, p);
+        canvas.drawBitmap(bitmap,0,0, p);
             /*int x1=60;
             int y1=70;
             int x2=500;
@@ -80,40 +90,23 @@ public class DrawView extends View {
 
     public void drawPoint(float x, float y) {
         canvas.drawPoint(x, y, p);
-        /*this.x=lastX;
+       /* this.x=lastX;
         this.y=lastY;*/
         invalidate();
-    }public void drawPoint1(float x, float y) {
+    }/*public void drawPoint1(float x, float y) {
         canvas.drawPoint(x, y, p);
         p.setStrokeWidth(5);
         p.setColor(Color.BLACK);
         invalidate();
-    }
-    public void drawRubber(float x, float y) {
+    }*/
+    /*public void drawRubber(float x, float y) {
         p.setStrokeWidth(50);
         p.setColor(Color.WHITE);
         /*this.x=lastX;
         this.y=lastY;*/
-        invalidate();
-    }
+        /*invalidate();
+    }*/
 
-    public void drawLineParam(int x1, float y1, int x2, float y2) {
-        p.setStrokeWidth(5);
-        p.setColor(Color.BLUE);
-        int x;
-        float y;
-        float slope=(y2-y1)/(x2-x1);
-        x=x1;
-        float pol=(float)0.5;
-        y=y1+pol;
-        while(x<=x2){
-            canvas.drawPoint(x,(int)y,p);
-            y=y+slope;
-            x=x+1;
-        }
-        invalidate();
-
-    }
 
    /* public void drawLineBr(float x1, float y1, float x2, float y2){
         p.setStrokeWidth(5);
@@ -134,7 +127,7 @@ public class DrawView extends View {
         }
         invalidate();
     }*/
-    public void drawCircleParam(int x0, int y0, int x, int y) {
+   /* public void drawCircleParam(int x0, int y0, int x, int y) {
         p.setStrokeWidth(5);
         p.setColor(Color.GREEN);
         //int R=(int)sqrt(pow((x0-x), 2)+pow((y0-y),2));
@@ -145,13 +138,13 @@ public class DrawView extends View {
         System.out.println("1"+" "+x1 + " " + y1);
        /* x2=x0;
         y2=y0+R;*/
-        while(x1<R/(Math.sqrt(2))){
+       /* while(x1<R/(Math.sqrt(2))){
             y1=round(Math.sqrt(R*R-x1*x1));
             x1++;
             System.out.println("2"+x1 + " " + y1);
             canvas.drawPoint(x0,y0,p);
             canvas.drawPoint((float)x1,(float)y1,p);
-        }
+        }*/
        /* while(a<360){
             a++;
             x1=x2;
@@ -162,8 +155,8 @@ public class DrawView extends View {
            //canvas.drawPoint((float)x2,(float)y2,p);
             drawLineBr((float)x1,(float)y1,(float)x2,(float)y2);
         }*/
-        invalidate();
-    }
+       /* invalidate();
+    }*/
 
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -172,29 +165,122 @@ public class DrawView extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: // нажатие
-                sDown = "Down: " + x + "," + y;
+                /*sDown = "Down: " + x + "," + y;
                 sMove = "";
-                sUp = "";
+                sUp = "";*/
+                if(instrument==1){
                 drawPoint(event.getX(), event.getY());
                 lastX = event.getX();
                 lastY = event.getY();
-                //drawLineBr(x,y,event.getX(),event.getY());
+               }else if(instrument==2){
+                    if(kol==0){
+                        drawLineBr.setX1(event.getX());
+                        drawLineBr.setY1(event.getY());
+                    }
+                    else if(kol==1){
+                        drawLineBr.setX2(event.getX());
+                        drawLineBr.setY2(event.getY());
+                    }
+                }else if(instrument==3){
+                    if(kol==0){
+                        drawLineParam.setX1(event.getX());
+                        drawLineParam.setY1(event.getY());
+                    }
+                    else if(kol==1){
+                        drawLineParam.setX2(event.getX());
+                        drawLineParam.setY2(event.getY());
+                    }
+                }
+                else if(instrument==4){
+                    if(kol==0){
+                        drawCircleParam.setX1(event.getX());
+                        drawCircleParam.setY1(event.getY());
+                    }
+                    else if(kol==1){
+                        drawCircleParam.setX2(event.getX());
+                        drawCircleParam.setY2(event.getY());
+                    }
+                }
+                else if(instrument==5){
+                    if(kol==0){
+                        drawCircleBr.setX1(event.getX());
+                        drawCircleBr.setY1(event.getY());
+                    }
+                    else if(kol==1){
+                        drawCircleBr.setX2(event.getX());
+                        drawCircleBr.setY2(event.getY());
+                    }
+                }
+                else if(instrument==9){
+                    if(kol==0){
+                        drawCircleBr.setX1(event.getX());
+                        drawCircleBr.setY1(event.getY());
+                    }
+                    else if(kol==1){
+                        drawCircleBr.setX2(event.getX());
+                        drawCircleBr.setY2(event.getY());
+                    }
+                }
                 break;
             case MotionEvent.ACTION_MOVE: // движение
-                sMove = "Move: " + x + "," + y;
-                canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
-                lastX = event.getX();
-                lastY = event.getY();
+                if(instrument==1) {
+                    canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
+                    lastX = event.getX();
+                    lastY = event.getY();
+                }else if(instrument==9){
+                   optional.drawRubber(canvas,p);
+                    lastX = event.getX();
+                    lastY = event.getY();
+                }
+               //}else if(instrument==2){
+
                 break;
             case MotionEvent.ACTION_UP: // отпускание
+                if(instrument==1){
                 canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
                 lastX = event.getX();
                 lastY = event.getY();
+                }
+                else if(instrument==2){
+                   if(kol==0){ kol++;}
+                    else if(kol==1){
+                       drawLineBr.drawLineBr(canvas,p);
+                       kol=0;
+                   }
+                }
+                else if(instrument==3){
+                    if(kol==0){ kol++;}
+                    else if(kol==1){
+                        drawLineParam.drawLineParam(canvas,p);
+                        kol=0;
+                    }
+                }
+                else if(instrument==4){
+                    if(kol==0){ kol++;}
+                    else if(kol==1){
+                        drawCircleParam.drawCircleParam(canvas,p);
+                        kol=0;
+                    }
+                }
+                else if(instrument==5){
+                    if(kol==0){ kol++;}
+                    else if(kol==1){
+                        drawCircleBr.drawCircleBr(canvas,p);
+                        kol=0;
+                    }
+                }
+                else if(instrument==5){
+                    if(kol==0){ kol++;}
+                    else if(kol==1){
+                        optional.drawRubber(canvas,p);
+                        kol=0;
+                    }
+                }
                 break;
-            case MotionEvent.ACTION_CANCEL:
+           /*case MotionEvent.ACTION_CANCEL:
                 sMove = "";
                 sUp = "Up: " + x + "," + y;
-                break;
+                break;*/
         }
         invalidate();
         //tv.setText(sDown + "\n" + sMove + "\n" + sUp);
