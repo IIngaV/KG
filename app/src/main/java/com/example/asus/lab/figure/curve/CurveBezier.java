@@ -1,18 +1,14 @@
-package com.example.asus.lab.figure;
+package com.example.asus.lab.figure.curve;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-
-import com.example.asus.lab.DrawView;
 
 /**
  * Created by a s u s on 18.03.2017.
  */
 
-public class Optional {
+public class CurveBezier {
     private float x1,x2,y1,y2;
-
     public float getX1(){
         return x1;
     }
@@ -37,9 +33,7 @@ public class Optional {
     public void setY2(float y2){
         this.y2=y2;
     }
-    public void drawRubber(Canvas canvas , Paint p) {
-        p.setStrokeWidth(50);
-        p.setColor(Color.WHITE);
+    public void CurveBezier(Canvas canvas , Paint p){
 
     }
 }

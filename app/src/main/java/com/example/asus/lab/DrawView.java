@@ -8,9 +8,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
-import com.example.asus.lab.figure.Optional;
 import com.example.asus.lab.figure.circle.DrawCircleBr;
 import com.example.asus.lab.figure.circle.DrawCircleParam;
 import com.example.asus.lab.figure.line.DrawLineBr;
@@ -18,10 +16,6 @@ import com.example.asus.lab.figure.line.DrawLineParam;
 
 import static java.lang.Math.round;
 import static java.lang.StrictMath.abs;
-import static java.lang.StrictMath.cos;
-import static java.lang.StrictMath.pow;
-import static java.lang.StrictMath.sin;
-import static java.lang.StrictMath.sqrt;
 
 /**
  * Created by a s u s on 04.03.2017.
@@ -38,7 +32,6 @@ public class DrawView extends View {
     private DrawCircleParam drawCircleParam;
     private DrawCircleBr drawCircleBr;
     private DrawView drawView;
-    private Optional optional;
     int kol=0;
 
     private Paint p;
@@ -61,7 +54,7 @@ public class DrawView extends View {
         drawLineBr=new DrawLineBr();
         drawLineParam=new DrawLineParam();
         drawCircleParam=new DrawCircleParam();
-        drawCircleBr=new DrawCircleBr();
+
     }
 
     protected void onDraw(Canvas canvas) {
@@ -212,14 +205,17 @@ public class DrawView extends View {
                     }
                 }
                 else if(instrument==9){
-                    if(kol==0){
+                    drawPoint(event.getX(), event.getY());
+                    lastX = event.getX();
+                    lastY = event.getY();
+                    /*if(kol==0){
                         drawCircleBr.setX1(event.getX());
                         drawCircleBr.setY1(event.getY());
                     }
                     else if(kol==1){
                         drawCircleBr.setX2(event.getX());
                         drawCircleBr.setY2(event.getY());
-                    }
+                    }*/
                 }
                 break;
             case MotionEvent.ACTION_MOVE: // движение
@@ -228,7 +224,11 @@ public class DrawView extends View {
                     lastX = event.getX();
                     lastY = event.getY();
                 }else if(instrument==9){
-                   optional.drawRubber(canvas,p);
+                    p.setStrokeWidth(50);
+                    p.setColor(Color.WHITE);
+                    canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
+                  // optional.drawRubber(canvas,p);
+
                     lastX = event.getX();
                     lastY = event.getY();
                 }
@@ -269,12 +269,18 @@ public class DrawView extends View {
                         kol=0;
                     }
                 }
-                else if(instrument==5){
-                    if(kol==0){ kol++;}
+                else if(instrument==9){
+                    p.setStrokeWidth(50);
+                    p.setColor(Color.WHITE);
+                    canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
+                    lastX = event.getX();
+                    lastY = event.getY();
+                    /*if(kol==0){ kol++;}
                     else if(kol==1){
                         optional.drawRubber(canvas,p);
+                        canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
                         kol=0;
-                    }
+                    }*/
                 }
                 break;
            /*case MotionEvent.ACTION_CANCEL:
