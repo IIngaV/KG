@@ -1,7 +1,10 @@
 package com.example.asus.lab;
 
+import android.app.AlertDialog;
 import android.app.usage.UsageEvents;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -39,13 +42,16 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
     int x3, x4, y3, y4;
     Canvas canvas;
     Paint p;
-
+    View v;
+    public static int col = 0;
+    public  static int colFake = 0;
 
     String sDown;
     String sMove;
     String sUp;
     DrawView drawView;
     DrawLineBr dlb;
+    MainActivity ma;
 
     /**
      * Called when the activity is first created.
@@ -113,8 +119,59 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+    public void onClick(View v) {
+           AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("Выберите количество точек")
+                   // .setMessage("Покормите кота!")
+                   // .setIcon(R.drawable.ic_menu_camera)
+                    .setCancelable(false)
+                    .setNegativeButton("2",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    col=2;
+                                    colFake = 2;
+                                    Toast toast6=Toast.makeText(getApplicationContext(),
+                                            "Кривая Безье! 2 точки",
+                                            Toast.LENGTH_SHORT);
+                                    toast6.setGravity(Gravity.CENTER, 0, 0);
+                                    toast6.show();
+                                    DrawView.instrument=6;
+                                    dialog.cancel();
+                                }
+                            })
+                    .setPositiveButton("5",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        col=5;
+                        colFake = 5;
+                        Toast toast6=Toast.makeText(getApplicationContext(),
+                                "Кривая Безье! 5 точек",
+                                Toast.LENGTH_SHORT);
+                        toast6.setGravity(Gravity.CENTER, 0, 0);
+                        toast6.show();
+                        DrawView.instrument=6;
+                        dialog.cancel();
+                    }
+                })
+                    .setNeutralButton("3",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    col=3;
+                                    colFake = 3;
+                                    Toast toast6=Toast.makeText(getApplicationContext(),
+                                            "Кривая Безье! 3 точки",
+                                            Toast.LENGTH_SHORT);
+                                    toast6.setGravity(Gravity.CENTER, 0, 0);
+                                    toast6.show();
+                                    DrawView.instrument=6;
+                                    dialog.cancel();
+                                }
+                            });
+            System.out.print(col);
+            AlertDialog alert = builder.create();
+            alert.show();
 
-
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -176,11 +233,27 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                     DrawView.instrument=4;
                    // drawView.drawCircleParam(x3,y3,x4,y4);
                     return true;
+                case R.id.action_curve_bezier:
 
+                    /*Intent intent = new Intent(this, ActivityBrezier.class);
+                    startActivity(intent);*/
+                    DrawView.instrument=6;
+                    onClick(v);
+                    return true;
+                case R.id.action_head:
+                    Toast toast7=Toast.makeText(getApplicationContext(),
+                            "Голова!",
+                            Toast.LENGTH_SHORT);
+                    toast7.setGravity(Gravity.CENTER, 0, 0);
+                    toast7.show();
+                    DrawView.instrument=7;
+                    // drawView.drawCircleParam(x3,y3,x4,y4);
+                    return true;
              }
 
         return super.onOptionsItemSelected(item);
     }
+
 }
 
 

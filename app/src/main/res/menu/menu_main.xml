@@ -25,11 +25,21 @@
     <item
         android:id="@+id/action_circle_br"
         android:orderInCategory="100"
-        android:title="Circle_br"
+        android:title="Circle_Br"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_circle_param"
         android:orderInCategory="100"
-        android:title="Circle_param"
+        android:title="Circle_Param"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_curve_bezier"
+        android:orderInCategory="100"
+        android:title="Curve_Bezier"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_head"
+        android:orderInCategory="100"
+        android:title="Head"
         app:showAsAction="never"/>
 </menu>

@@ -5,14 +5,19 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.asus.lab.figure.circle.DrawCircleBr;
 import com.example.asus.lab.figure.circle.DrawCircleParam;
+import com.example.asus.lab.figure.curve.CurveBezier;
 import com.example.asus.lab.figure.line.DrawLineBr;
 import com.example.asus.lab.figure.line.DrawLineParam;
+
+import java.util.ArrayList;
 
 import static java.lang.Math.round;
 import static java.lang.StrictMath.abs;
@@ -25,6 +30,7 @@ public class DrawView extends View {
     private Canvas canvas;
     private Bitmap bitmap;
     public static int instrument=0;
+
     float lastX;
     float lastY;
     private DrawLineBr drawLineBr;
@@ -32,8 +38,13 @@ public class DrawView extends View {
     private DrawCircleParam drawCircleParam;
     private DrawCircleBr drawCircleBr;
     private DrawView drawView;
+    private ObjFile objFile;
+    private MainActivity mainActivity;
+    private CurveBezier curveBezier;
+    private ArrayList<PointF> pointFs;
     int kol=0;
-
+    boolean qwe = false;
+    //public static int in=MainActivity.col;
     private Paint p;
 
 
@@ -54,7 +65,12 @@ public class DrawView extends View {
         drawLineBr=new DrawLineBr();
         drawLineParam=new DrawLineParam();
         drawCircleParam=new DrawCircleParam();
+        drawCircleBr = new DrawCircleBr();
+        objFile=new ObjFile();
+        mainActivity=new MainActivity();
+        curveBezier=new CurveBezier();
 
+        pointFs = new ArrayList<>(mainActivity.col);
     }
 
     protected void onDraw(Canvas canvas) {
@@ -208,16 +224,14 @@ public class DrawView extends View {
                     drawPoint(event.getX(), event.getY());
                     lastX = event.getX();
                     lastY = event.getY();
-                    /*if(kol==0){
-                        drawCircleBr.setX1(event.getX());
-                        drawCircleBr.setY1(event.getY());
-                    }
-                    else if(kol==1){
-                        drawCircleBr.setX2(event.getX());
-                        drawCircleBr.setY2(event.getY());
-                    }*/
                 }
-                break;
+                else if(instrument==7){
+                   objFile.readFile();
+                    objFile.drawObj(canvas,p);
+                }
+               /* else if(instrument==6) {
+                    break;
+                }*/
             case MotionEvent.ACTION_MOVE: // движение
                 if(instrument==1) {
                     canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
@@ -275,24 +289,23 @@ public class DrawView extends View {
                     canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
                     lastX = event.getX();
                     lastY = event.getY();
-                    /*if(kol==0){ kol++;}
-                    else if(kol==1){
-                        optional.drawRubber(canvas,p);
-                        canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
-                        kol=0;
-                    }*/
+                } else if(instrument == 6){
+                    if(!qwe) {
+                        //PointF g = new PointF();
+                        curveBezier.addPoint(event.getX(), event.getY());
+                        mainActivity.col--;
+                        if(mainActivity.col == 0){
+                            qwe = true;
+                        }
+                    }else {
+                        curveBezier.draw(canvas, p);
+                        qwe = false;
+                    }
                 }
-                break;
-           /*case MotionEvent.ACTION_CANCEL:
-                sMove = "";
-                sUp = "Up: " + x + "," + y;
-                break;*/
+
         }
         invalidate();
-        //tv.setText(sDown + "\n" + sMove + "\n" + sUp);
         return true;
     }
-
-
 
 }

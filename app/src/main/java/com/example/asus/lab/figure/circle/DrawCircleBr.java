@@ -7,9 +7,6 @@ import android.graphics.Paint;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-/**
- * Created by a s u s on 11.03.2017.
- */
 
 public class DrawCircleBr {
     private float x1,x2,y1,y2;

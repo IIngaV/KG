@@ -2,38 +2,46 @@ package com.example.asus.lab.figure.curve;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.PointF;
+import android.util.Log;
 
-/**
- * Created by a s u s on 18.03.2017.
- */
+
+import com.example.asus.lab.MainActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CurveBezier {
-    private float x1,x2,y1,y2;
-    public float getX1(){
-        return x1;
+    final String LOG = "logging";
+    private float x,y;
+    private Point point;
+    MainActivity mainActivity;
+    private List<PointF> points;
+    public CurveBezier(){
+        points=new ArrayList<>(mainActivity.col);
     }
-    public void setX1(float x1){
-        this.x1=x1;
-    }
-    public float getX2(){
-        return x2;
-    }
-    public void setX2(float x2){
-        this.x2=x2;
-    }
-    public float getY1(){
-        return y1;
-    }
-    public void setY1(float y1){
-        this.y1=y1;
-    }
-    public float getY2(){
-        return y2;
-    }
-    public void setY2(float y2){
-        this.y2=y2;
-    }
-    public void CurveBezier(Canvas canvas , Paint p){
 
+    public void draw(Canvas canvas , Paint p){
+        for(float t=0; t<=1; t+=0.00001){
+            PointF arr[]=new PointF[mainActivity.colFake];
+            for(int i=0; i<mainActivity.colFake; i++){
+                arr[i]= points.get(i);
+            }
+            for(int j=mainActivity.colFake-2; j>=0;j--){
+                for(int i=0; i<=j; i++){
+                    arr[i].x= (int) (arr[i].x+t*(arr[i+1].x-arr[i].x));
+                    arr[i].y= (int) (arr[i].y+t*(arr[i+1].y-arr[i].y));
+                }
+            }
+            canvas.drawPoint(arr[0].x,arr[0].y,p);
+            mainActivity.col = mainActivity.colFake;
+        }
+        points.clear();
+        }
+
+        public void addPoint(float x, float y){
+            PointF p = new PointF(x,y);
+            points.add(p);
+        }
     }
-}
