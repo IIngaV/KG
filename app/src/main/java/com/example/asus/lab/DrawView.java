@@ -52,7 +52,7 @@ public class DrawView extends View {
     public DrawView(Context context) {
         super(context);
         //p = new Paint();
-
+//
 
     }
 
