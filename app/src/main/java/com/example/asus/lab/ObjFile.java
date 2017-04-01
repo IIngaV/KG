@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.os.Environment;
 import android.util.Log;
 
+import com.example.asus.lab.figure.line.DrawLineBr;
 import com.example.asus.lab.figure.line.DrawLineParam;
 
 import java.io.BufferedReader;
@@ -23,11 +24,13 @@ public class ObjFile {
     private ArrayList<Point> verts;
     private ArrayList<String[]> faces;
     private File sdPath;
+    private DrawLineBr drawLineBr;
 
 
     public ObjFile(){
         verts = new ArrayList<>();
         faces = new ArrayList<>();
+        drawLineBr=new DrawLineBr();
 
         // проверяем доступность SD
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -49,6 +52,7 @@ public class ObjFile {
 
     public boolean readFile() {
         // формируем объект File, который содержит путь к файлу
+        long start = System.currentTimeMillis();
         File sdFile = new File(sdPath, file);
         try {
             // открываем поток для чтения
@@ -56,7 +60,6 @@ public class ObjFile {
             String line = "";
             // читаем содержимое
             while ((line = br.readLine()) != null) {
-                //System.out.println(line);
                 if (line.length() != 0) {
                     if (line.charAt(0) == 'v' && line.charAt(1) == ' ') {
                         String[] coordinates = line.split(" ");
@@ -74,6 +77,7 @@ public class ObjFile {
                     }
                 }
             }
+            long timeWorkCode = System.currentTimeMillis() - start;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;

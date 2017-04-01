@@ -39,7 +39,7 @@ public class DrawView extends View {
     private DrawCircleBr drawCircleBr;
     private DrawView drawView;
     private ObjFile objFile;
-    private MainActivity mainActivity;
+    MainActivity mainActivity=MainActivity.ma;
     private CurveBezier curveBezier;
     private ArrayList<PointF> pointFs;
     int kol=0;
@@ -67,7 +67,6 @@ public class DrawView extends View {
         drawCircleParam=new DrawCircleParam();
         drawCircleBr = new DrawCircleBr();
         objFile=new ObjFile();
-        mainActivity=new MainActivity();
         curveBezier=new CurveBezier();
 
         pointFs = new ArrayList<>(mainActivity.col);
@@ -99,73 +98,7 @@ public class DrawView extends View {
 
     public void drawPoint(float x, float y) {
         canvas.drawPoint(x, y, p);
-       /* this.x=lastX;
-        this.y=lastY;*/
-        invalidate();
-    }/*public void drawPoint1(float x, float y) {
-        canvas.drawPoint(x, y, p);
-        p.setStrokeWidth(5);
-        p.setColor(Color.BLACK);
-        invalidate();
-    }*/
-    /*public void drawRubber(float x, float y) {
-        p.setStrokeWidth(50);
-        p.setColor(Color.WHITE);
-        /*this.x=lastX;
-        this.y=lastY;*/
-        /*invalidate();
-    }*/
-
-
-   /* public void drawLineBr(float x1, float y1, float x2, float y2){
-        p.setStrokeWidth(5);
-        p.setColor(Color.RED);
-        float absx=abs(x2-x1);
-        float absy=abs(y2-y1);
-        float spec=absx;
-        if(absy>absx){
-            spec=absy;
-        }
-        float dx=(x2-x1)/spec;
-        float dy=(y2-y1)/spec;
-        float x=x1,y=y1;
-        for(int i=0; i<(int)spec;i++){
-            canvas.drawPoint(x,y,p);
-            x+=dx;
-            y+=dy;
-        }
-        invalidate();
-    }*/
-   /* public void drawCircleParam(int x0, int y0, int x, int y) {
-        p.setStrokeWidth(5);
-        p.setColor(Color.GREEN);
-        //int R=(int)sqrt(pow((x0-x), 2)+pow((y0-y),2));
-        int R=(int) Math.sqrt((x-x0)*(x-x0)+(y-y0)*(y-y0));
-        System.out.println("R"+R);
-       // int a=1;
-        double x1=0,x2, y1=0,y2;
-        System.out.println("1"+" "+x1 + " " + y1);
-       /* x2=x0;
-        y2=y0+R;*/
-       /* while(x1<R/(Math.sqrt(2))){
-            y1=round(Math.sqrt(R*R-x1*x1));
-            x1++;
-            System.out.println("2"+x1 + " " + y1);
-            canvas.drawPoint(x0,y0,p);
-            canvas.drawPoint((float)x1,(float)y1,p);
-        }*/
-       /* while(a<360){
-            a++;
-            x1=x2;
-            y1=y2;
-            double a1=(double)a;
-            x2=round(R*sin(a1))+x0;
-            y2=round(R*cos(a))+y0;
-           //canvas.drawPoint((float)x2,(float)y2,p);
-            drawLineBr((float)x1,(float)y1,(float)x2,(float)y2);
-        }*/
-       /* invalidate();
-    }*/
+    }
 
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -174,9 +107,6 @@ public class DrawView extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: // нажатие
-                /*sDown = "Down: " + x + "," + y;
-                sMove = "";
-                sUp = "";*/
                 if(instrument==1){
                 drawPoint(event.getX(), event.getY());
                 lastX = event.getX();
@@ -229,9 +159,10 @@ public class DrawView extends View {
                    objFile.readFile();
                     objFile.drawObj(canvas,p);
                 }
-               /* else if(instrument==6) {
-                    break;
-                }*/
+                else if(instrument==6) {
+                    Toast.makeText(MainActivity.ma, String.valueOf(kol), Toast.LENGTH_SHORT).show();
+                    curveBezier.addPoint(event.getX(),event.getY());
+                }
             case MotionEvent.ACTION_MOVE: // движение
                 if(instrument==1) {
                     canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
@@ -241,12 +172,9 @@ public class DrawView extends View {
                     p.setStrokeWidth(50);
                     p.setColor(Color.WHITE);
                     canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
-                  // optional.drawRubber(canvas,p);
-
                     lastX = event.getX();
                     lastY = event.getY();
                 }
-               //}else if(instrument==2){
 
                 break;
             case MotionEvent.ACTION_UP: // отпускание
@@ -290,22 +218,25 @@ public class DrawView extends View {
                     lastX = event.getX();
                     lastY = event.getY();
                 } else if(instrument == 6){
-                    if(!qwe) {
-                        //PointF g = new PointF();
+                    /*if(!qwe) {
                         curveBezier.addPoint(event.getX(), event.getY());
                         mainActivity.col--;
-                        if(mainActivity.col == 0){
+                        if(mainActivity.col ==0){
                             qwe = true;
                         }
                     }else {
                         curveBezier.draw(canvas, p);
                         qwe = false;
-                    }
+                    }*/
+                    this.kol++;
                 }
 
         }
         invalidate();
         return true;
     }
-
+    public void drawLineBese(){
+        curveBezier.draw(kol , canvas,p);
+        kol = 0;
+    }
 }

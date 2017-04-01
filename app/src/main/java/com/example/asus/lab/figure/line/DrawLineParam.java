@@ -3,6 +3,8 @@ package com.example.asus.lab.figure.line;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.Gravity;
+import android.widget.Toast;
 
 /**
  * Created by a s u s on 11.03.2017.
@@ -38,19 +40,48 @@ public class DrawLineParam {
 
     public void drawLineParam(Canvas canvas , Paint p){
         p.setStrokeWidth(5);
-        p.setColor(Color.RED);
-        float max = Math.max(Math.abs(x2 - x1),Math.abs(y2 - y1));
-        float t = 1/(max); //шаг приращения
+        //p.setColor(Color.RED);
+        int r1=255;
+        int g1=0;
+        int b1=0;
+        int r2=0;
+        int g2=255;
+        int b2=255;
+        //float max = Math.max(Math.abs(x2 - x1),Math.abs(y2 - y1));
+        //float t = 1/(max); //шаг приращения
+        float t;
+        float dx=Math.abs(x2 - x1);
+        float dy=Math.abs(y2 - y1);
+        t=dx;
+        if (dx<dy) {
+        t=dy;
+        }
+            dx=(x2-x1)/t;
+            dy=(y2-y1)/t;
+        float x=x1;
+        float y=y1;
+        int R=r2-r1;
+        int G=g2-g1;
+        int B=b2-b1;
+        for(int i=0;i<Math.round(t);i++){
+            p.setColor(Color.rgb(r1,g1,b1));
+            canvas.drawPoint(x, y, p);
+            if((r1>r2)&&(g2>g1)&&(b2>b1)) {
+                    System.out.print(i);
+                    r1=r1+Math.round( R / t);
+                    g1 =g1 +Math.round( G / t);
+                    b1 =b1 +Math.round( B / t);
+            }
+            x+=dx;
+            y+=dy;
+        }
 
-        if (x1 < x2 && y1 < y2) {
-            float x = x1;
-            float y = y1;
-            while (x <= x2 && y <= y2) {
+            /*while (x <= x2 && y <= y2) {
                 canvas.drawPoint(x, y, p);
                 x = x + t * (x2 - x1);
                 y = y + t * (y2 - y1);
-            }
-        } else if (x1 > x2 && y1 < y2){
+           // }
+        } /*else if (x1 > x2 && y1 < y2){
             float x = x1;
             float y = y1;
             while (x >= x2 && y <= y2) {
@@ -74,7 +105,7 @@ public class DrawLineParam {
                 x = x + t * (x1 - x2);
                 y = y + t * (y1 - y2);
             }
-        }
+        }*/
 
         /*float absx=abs(x2-x1);
         float absy=abs(y2-y1);

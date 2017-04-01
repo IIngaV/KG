@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View.OnTouchListener;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,13 +46,14 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
     View v;
     public static int col = 0;
     public  static int colFake = 0;
-
+    Button buttonBezier;
     String sDown;
     String sMove;
     String sUp;
     DrawView drawView;
     DrawLineBr dlb;
-    MainActivity ma;
+    public static MainActivity ma;
+
 
     /**
      * Called when the activity is first created.
@@ -62,68 +64,21 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /*tv = new TextView(this);
-        tv.setOnTouchListener(this);*/
-
         drawView = (DrawView) findViewById(R.id.view);
-        //setContentView(tv);
-        //setContentView(new DrawView(this));
-    }
+        buttonBezier=(Button)findViewById(R.id.buttonBezier);
+        buttonBezier.setVisibility(View.GONE);
+        ma = MainActivity.this;
 
-    /*@Override
-    public boolean onTouch(View view,MotionEvent event) {
-        x = event.getX();
-        y = event.getY();
-
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN: // нажатие
-                sDown = "Down: " + x + "," + y;
-                sMove = ""; sUp = "";
-                break;
-            case MotionEvent.ACTION_MOVE: // движение
-                sMove = "Move: " + x + "," + y;
-                break;
-            case MotionEvent.ACTION_UP: // отпускание
-            case MotionEvent.ACTION_CANCEL:
-                sMove = "";
-                sUp = "Up: " + x + "," + y;
-                break;
-        }
-        tv.setText(sDown + "\n" + sMove + "\n" + sUp);
-        return true;
-    }*/
-
-    //@Override
-    /*protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(new DrawView(this));*/
-        /*//setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-
-    //}
-
+}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-    public void onClick(View v) {
+   /* public void onClick(View v) {
            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("Выберите количество точек")
-                   // .setMessage("Покормите кота!")
-                   // .setIcon(R.drawable.ic_menu_camera)
                     .setCancelable(false)
                     .setNegativeButton("2",
                             new DialogInterface.OnClickListener() {
@@ -139,13 +94,13 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                                     dialog.cancel();
                                 }
                             })
-                    .setPositiveButton("5",
+                    .setPositiveButton("4",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        col=5;
-                        colFake = 5;
+                        col=4;
+                        colFake = 4;
                         Toast toast6=Toast.makeText(getApplicationContext(),
-                                "Кривая Безье! 5 точек",
+                                "Кривая Безье! 4 точек",
                                 Toast.LENGTH_SHORT);
                         toast6.setGravity(Gravity.CENTER, 0, 0);
                         toast6.show();
@@ -171,7 +126,7 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
             AlertDialog alert = builder.create();
             alert.show();
 
-    }
+    }*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -234,11 +189,15 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                    // drawView.drawCircleParam(x3,y3,x4,y4);
                     return true;
                 case R.id.action_curve_bezier:
-
-                    /*Intent intent = new Intent(this, ActivityBrezier.class);
-                    startActivity(intent);*/
                     DrawView.instrument=6;
-                    onClick(v);
+                    buttonBezier.setVisibility(View.VISIBLE);
+                    buttonBezier.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            drawView.drawLineBese();
+                        }
+                    });
+                   // onClick(v);
                     return true;
                 case R.id.action_head:
                     Toast toast7=Toast.makeText(getApplicationContext(),
@@ -249,6 +208,13 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                     DrawView.instrument=7;
                     // drawView.drawCircleParam(x3,y3,x4,y4);
                     return true;
+                case R.id.action_save:
+                    Toast toast8=Toast.makeText(getApplicationContext(),
+                            "Сохранить!",
+                            Toast.LENGTH_SHORT);
+                    toast8.setGravity(Gravity.CENTER, 0, 0);
+                    toast8.show();
+                    DrawView.instrument=8;
              }
 
         return super.onOptionsItemSelected(item);
