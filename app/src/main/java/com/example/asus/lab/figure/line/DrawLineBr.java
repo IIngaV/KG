@@ -44,8 +44,13 @@ public class DrawLineBr {
     }
 
     public void drawLineBr(Canvas canvas , Paint p){
-        p.setStrokeWidth(5);
+        p.setStrokeWidth(1);
         p.setColor(Color.GREEN);
+        x1=694;
+        x2=10;
+        y1=10;
+        y2=700;
+
         float x=x1;
         float y=y1;
         float dx=Math.abs(x2-x1);

@@ -39,6 +39,7 @@ public class DrawView extends View {
     private DrawCircleBr drawCircleBr;
     private DrawView drawView;
     private ObjFile objFile;
+    private Brush brush;
     MainActivity mainActivity=MainActivity.ma;
     private CurveBezier curveBezier;
     private ArrayList<PointF> pointFs;
@@ -54,6 +55,16 @@ public class DrawView extends View {
         //p = new Paint();
 //
 
+    }
+    public Bitmap getBitmap(){
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap){
+        brush.setBitmap(bitmap);
+        this.bitmap = brush.getBitmap();
+        canvas = new Canvas(bitmap);
+        invalidate();
     }
 
     public DrawView(Context context, AttributeSet attrs) {

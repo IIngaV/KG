@@ -35,10 +35,13 @@ public class DrawCircleBr {
         this.y2=y2;
     }
     public void drawCircleBr(Canvas canvas , Paint p){
-        p.setStrokeWidth(5);
-        p.setColor(Color.YELLOW);
+        p.setStrokeWidth(1);
+        p.setColor(Color.BLACK);
+        x1=0;
+        y1=0;
 
-        float r=(float)sqrt(pow((x2-x1), 2)+pow((y2-y1),2));
+        float r=679;//(float)sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+
         int X=0, Y=(int)r;
         int f=1-Y;
         canvas.drawPoint(x1,y1+r,p);

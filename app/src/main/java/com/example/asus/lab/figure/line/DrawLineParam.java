@@ -39,7 +39,11 @@ public class DrawLineParam {
     }
 
     public void drawLineParam(Canvas canvas , Paint p){
-        p.setStrokeWidth(5);
+        p.setStrokeWidth(1);
+        x1=694;
+        x2=10;
+        y1=10;
+        y2=700;
         //p.setColor(Color.RED);
         int r1=255;
         int g1=0;
@@ -65,7 +69,7 @@ public class DrawLineParam {
         int B=b2-b1;
         for(int i=0;i<Math.round(t);i++){
             p.setColor(Color.rgb(r1,g1,b1));
-            canvas.drawPoint(x, y, p);
+            canvas.drawPoint(Math.round(x), Math.round(y), p);
             if((r1>r2)&&(g2>g1)&&(b2>b1)) {
                     System.out.print(i);
                     r1=r1+Math.round( R / t);

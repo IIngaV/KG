@@ -26,9 +26,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.asus.lab.bmp.BitmapException;
+import com.example.asus.lab.bmp.FileIO;
 import com.example.asus.lab.figure.line.DrawLineBr;
 
 import static java.lang.Math.abs;
@@ -209,14 +212,76 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                     // drawView.drawCircleParam(x3,y3,x4,y4);
                     return true;
                 case R.id.action_save:
-                    Toast toast8=Toast.makeText(getApplicationContext(),
+                    /*Toast toast8=Toast.makeText(getApplicationContext(),
                             "Сохранить!",
                             Toast.LENGTH_SHORT);
                     toast8.setGravity(Gravity.CENTER, 0, 0);
                     toast8.show();
-                    DrawView.instrument=8;
-             }
+                    DrawView.instrument=8;*/
+                    Toast.makeText(ma, "Запись на файл начата.", Toast.LENGTH_SHORT).show();
+                    FileIO f = new FileIO();
+                    f.writeBMP(drawView.getBitmap());
+                    Toast.makeText(ma, "Сохранение успешно!", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.action_read:
+                    OpenFileDialog ofd3 = new OpenFileDialog(this, new OpenFileDialog.OnFileNameSetListener() {
+                        @Override
+                        public void onSet(String fileName) {
+                            //Toast.makeText(ma, getString(R.string.openingFileStart), Toast.LENGTH_SHORT).show();
+                            FileIO f = new FileIO();
+                            Bitmap bmp = null;
+                            try {
+                                bmp = f.readBMP(fileName);
+                            } catch (BitmapException e) {
+                                e.printStackTrace();
+                            }
+                            if (bmp != null) {
+                                Toast.makeText(ma, "Считывание завершено.\nНачата отрисовка.", Toast.LENGTH_SHORT).show();
 
+                                drawView.setBitmap(bmp);
+                                drawView.invalidate();
+
+                                //_onTouch.getHandlerOffset().update();
+                                Toast.makeText(ma, "Готово.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(ma, "Не удалось считать файл.", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(mainActivity, bmp.getHeight() + bmp.getWidth(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    ofd3.show();
+                    return true;
+                /*case R.id.nav_scale:
+                LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.scale_dialog, (ViewGroup)findViewById(R.id.scale_dialog_root_element));
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                        .setView(layout);
+                final AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                SeekBar sb = (SeekBar)layout.findViewById(R.id.scale_dialog_seekbar);
+                final TextView tv = (TextView)layout.findViewById(R.id.scale_dialog_textView);
+                tv.setText("1");
+                Button button = (Button)layout.findViewById(R.id.scale_dialog_button);
+                final int[] scale = {0};
+                sb.setMax(25);
+                sb.setProgress(1);
+                sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        tv.setText(String.valueOf(progress));
+                        scale[0] = progress;
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });*/
+            }
         return super.onOptionsItemSelected(item);
     }
 

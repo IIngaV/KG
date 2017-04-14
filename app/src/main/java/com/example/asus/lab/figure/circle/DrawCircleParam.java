@@ -44,14 +44,14 @@ public class DrawCircleParam {
         this.y2=y2;
     }
     public void drawCircleParam(Canvas canvas , Paint p){
-        p.setStrokeWidth(5);
-        p.setColor(Color.MAGENTA);
+        p.setStrokeWidth(1);
+        p.setColor(Color.RED);
         float X, Y;
-        float X0=x1;
-        float Y0=y1;
-        float r=(float)sqrt(pow((x2-x1), 2)+pow((y2-y1),2));
-        for(X=0;X<r/(sqrt(2.0));X++){
-            Y=(float)(sqrt(r*r-X*X));
+        float X0=0;//x1;
+        float Y0=0;//y1
+        float r=679;//(float)sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+        for(X=0;X<Math.round(r/(sqrt(2.0)));X++){
+            Y=/*(float)*/Math.round(sqrt(r*r-X*X));
             canvas.drawPoint(X0+X,Y0+Y,p);
             canvas.drawPoint(X0+Y,Y0+X,p);
             canvas.drawPoint(X0+Y,Y0-X,p);
