@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
+
 public class Brush {
     private Paint mPaint;
     private Canvas canvas;

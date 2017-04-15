@@ -52,4 +52,9 @@
         android:orderInCategory="100"
         android:title="Read"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_limits"
+        android:orderInCategory="100"
+        android:title="Limits"
+        app:showAsAction="never"/>
 </menu>

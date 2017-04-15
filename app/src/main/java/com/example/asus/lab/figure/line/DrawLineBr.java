@@ -5,17 +5,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.asus.lab.DrawView;
+import com.example.asus.lab.Point;
 
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.max;
 import static java.lang.StrictMath.signum;
 
-/**
- * Created by a s u s on 11.03.2017.
- */
 
 public class DrawLineBr {
-    private float x1,x2,y1,y2;
+    private float x1,x2,y1,y2,x3,y3;
     private DrawView drawView;
 
     public float getX1(){
@@ -42,14 +40,26 @@ public class DrawLineBr {
     public void setY2(float y2){
         this.y2=y2;
     }
+   /* public float getX3(){
+        return x3;
+    }
+    public void setX3(float x3){
+        this.x3=x3;
+    }
+    public float getY3(){
+        return y3;
+    }*/
+    public void setY3(float y3){
+        this.y3=y3;
+    }
 
     public void drawLineBr(Canvas canvas , Paint p){
-        p.setStrokeWidth(1);
+        p.setStrokeWidth(10);
         p.setColor(Color.GREEN);
-        x1=694;
-        x2=10;
-        y1=10;
-        y2=700;
+        x1=getX1();
+        x2=getX2();
+        y1=getY1();
+        y2=getY2();
 
         float x=x1;
         float y=y1;
@@ -57,18 +67,7 @@ public class DrawLineBr {
         float dy=Math.abs(y2-y1);
         float s1=signum(x2-x1);
         float s2=signum(y2-y1);
-        /*if ((x2-x1)>=0){
-            s1=x2-x1;
-        }
-        else{
-            s1=-(x2-x1);
-        }
-        if ((y2-y1)>=0){
-            s2=y2-y1;
-        }
-        else{
-            s2=-(y2-y1);
-        }*/
+
         boolean swap=false;
         float c;
         float dc1;
@@ -103,6 +102,7 @@ public class DrawLineBr {
             }
             c=c+dc1;
         }
+
 
 
     }

@@ -28,18 +28,19 @@ import static java.lang.StrictMath.abs;
 
 public class DrawView extends View {
     private Canvas canvas;
+    private Brush brush;
     private Bitmap bitmap;
+    //public static Bitmap bitmap;
     public static int instrument=0;
-
     float lastX;
     float lastY;
     private DrawLineBr drawLineBr;
     private DrawLineParam drawLineParam;
     private DrawCircleParam drawCircleParam;
     private DrawCircleBr drawCircleBr;
-    private DrawView drawView;
     private ObjFile objFile;
-    private Brush brush;
+    private Limits limits;
+
     MainActivity mainActivity=MainActivity.ma;
     private CurveBezier curveBezier;
     private ArrayList<PointF> pointFs;
@@ -47,6 +48,12 @@ public class DrawView extends View {
     boolean qwe = false;
     //public static int in=MainActivity.col;
     private Paint p;
+
+    private FloodFill floodFill;
+
+    public Brush getBrush() {
+        return brush;
+    }
 
 
 
@@ -79,8 +86,26 @@ public class DrawView extends View {
         drawCircleBr = new DrawCircleBr();
         objFile=new ObjFile();
         curveBezier=new CurveBezier();
+        limits=new Limits();
+
+        floodFill = new FloodFill();
+
+        brush = new Brush();
+        bitmap = brush.getBitmap();
+        canvas = brush.getCanvas();
+        p = brush.getmPaint();
 
         pointFs = new ArrayList<>(mainActivity.col);
+    }
+
+
+
+    public Paint getP(){
+        return p;
+    }
+
+    public void setP(Paint p){
+        this.p = p;
     }
 
     protected void onDraw(Canvas canvas) {
@@ -174,6 +199,20 @@ public class DrawView extends View {
                     Toast.makeText(MainActivity.ma, String.valueOf(kol), Toast.LENGTH_SHORT).show();
                     curveBezier.addPoint(event.getX(),event.getY());
                 }
+                else if(instrument==10){
+                    if(kol==0){
+                        limits.setX1(event.getX());
+                        limits.setY1(event.getY());
+                    }
+                    else if(kol==1){
+                        limits.setX2(event.getX());
+                        limits.setY2(event.getY());
+                    }
+                    else if(kol==2){
+                        limits.setX3(event.getX());
+                        limits.setY3(event.getY());
+                    }
+                }
             case MotionEvent.ACTION_MOVE: // движение
                 if(instrument==1) {
                     canvas.drawLine(lastX, lastY, event.getX(), event.getY(), p);
@@ -197,7 +236,7 @@ public class DrawView extends View {
                 else if(instrument==2){
                    if(kol==0){ kol++;}
                     else if(kol==1){
-                       drawLineBr.drawLineBr(canvas,p);
+                       drawLineBr.drawLineBr( canvas,p);
                        kol=0;
                    }
                 }
@@ -219,6 +258,14 @@ public class DrawView extends View {
                     if(kol==0){ kol++;}
                     else if(kol==1){
                         drawCircleBr.drawCircleBr(canvas,p);
+                        kol=0;
+                    }
+                }
+                else if(instrument==10){
+                    if((kol==0)||(kol==1)){ kol++;}
+                    else if(kol==2){
+                        limits.drawLimits(brush,canvas,p);
+                        //limits.fill(canvas, p);
                         kol=0;
                     }
                 }

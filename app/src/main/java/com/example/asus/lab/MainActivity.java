@@ -223,6 +223,14 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                     f.writeBMP(drawView.getBitmap());
                     Toast.makeText(ma, "Сохранение успешно!", Toast.LENGTH_SHORT).show();
                     return true;
+                case R.id.action_limits:
+                    Toast toast10=Toast.makeText(getApplicationContext(),
+                            "Рамка!",
+                            Toast.LENGTH_SHORT);
+                    toast10.setGravity(Gravity.CENTER, 0, 0);
+                    toast10.show();
+                    DrawView.instrument=10;
+                    return true;
                 case R.id.action_read:
                     OpenFileDialog ofd3 = new OpenFileDialog(this, new OpenFileDialog.OnFileNameSetListener() {
                         @Override
