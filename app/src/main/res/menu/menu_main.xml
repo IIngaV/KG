@@ -2,56 +2,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.asus.lab.MainActivity">
-    <item
-        android:id="@+id/action_begin"
-        android:orderInCategory="100"
-        android:title="Begin"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_rubber"
-        android:orderInCategory="100"
-        android:title="Rubber"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_line_br"
-        android:orderInCategory="100"
-        android:title="Line_Br"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_line_param"
-        android:orderInCategory="100"
-        android:title="Line_Param"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_circle_br"
-        android:orderInCategory="100"
-        android:title="Circle_Br"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_circle_param"
-        android:orderInCategory="100"
-        android:title="Circle_Param"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_curve_bezier"
-        android:orderInCategory="100"
-        android:title="Curve_Bezier"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_head"
-        android:orderInCategory="100"
-        android:title="Head"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_save"
-        android:orderInCategory="100"
-        android:title="Save"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_read"
-        android:orderInCategory="100"
-        android:title="Read"
-        app:showAsAction="never"/>
+
+    <item android:title="Рисование отрезка">
+        <menu>
+            <item
+                android:id="@+id/action_line_br"
+                android:orderInCategory="100"
+                android:title="Line_Br"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/action_line_param"
+                android:orderInCategory="100"
+                android:title="Line_Param"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+    <item android:title="Рисование окружности">
+        <menu>
+            <item
+                android:id="@+id/action_circle_br"
+                android:orderInCategory="100"
+                android:title="Circle_Br"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/action_circle_param"
+                android:orderInCategory="100"
+                android:title="Circle_Param"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+    <item android:title="Рисование кривой">
+        <menu>
+            <item
+                android:id="@+id/action_curve_bezier"
+                android:orderInCategory="100"
+                android:title="Curve_Bezier"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/action_head"
+                android:orderInCategory="100"
+                android:title="Head"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+    <item android:title="Настройки">
+        <menu>
+            <item
+                android:id="@+id/action_save"
+                android:orderInCategory="100"
+                android:title="Save"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/action_read"
+                android:orderInCategory="100"
+                android:title="Read"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/action_begin"
+                android:orderInCategory="100"
+                android:title="Begin"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/action_rubber"
+                android:orderInCategory="100"
+                android:title="Rubber"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
     <item
         android:id="@+id/action_limits"
         android:orderInCategory="100"
