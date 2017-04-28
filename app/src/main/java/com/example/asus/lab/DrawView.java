@@ -40,6 +40,7 @@ public class DrawView extends View {
     private DrawCircleBr drawCircleBr;
     private ObjFile objFile;
     private Limits limits;
+    private Point point;
 
     MainActivity mainActivity=MainActivity.ma;
     private CurveBezier curveBezier;
@@ -87,6 +88,7 @@ public class DrawView extends View {
         objFile=new ObjFile();
         curveBezier=new CurveBezier();
         limits=new Limits();
+        point=new Point(lastX,lastY);
 
         floodFill = new FloodFill();
 

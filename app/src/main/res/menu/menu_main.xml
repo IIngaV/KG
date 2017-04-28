@@ -45,6 +45,29 @@
                 app:showAsAction="never"/>
         </menu>
     </item>
+    <item android:title="Кисть">
+        <menu>
+            <item
+                android:id="@+id/action_brush_width"
+                android:orderInCategory="100"
+                android:title="brush_width"
+                app:showAsAction="never"/>
+            <item android:title="Цвет">
+                <menu>
+            <item
+                android:id="@+id/action_color_picker"
+                android:orderInCategory="100"
+                android:title="1 цвет"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/action_color_picker1"
+                android:orderInCategory="100"
+                android:title="2 цвета"
+                app:showAsAction="never"/>
+                </menu>
+            </item>
+        </menu>
+    </item>
     <item android:title="Настройки">
         <menu>
             <item

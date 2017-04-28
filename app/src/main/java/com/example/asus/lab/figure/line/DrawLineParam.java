@@ -39,12 +39,7 @@ public class DrawLineParam {
     }
 
     public void drawLineParam(Canvas canvas , Paint p){
-        p.setStrokeWidth(1);
-        x1=694;
-        x2=10;
-        y1=10;
-        y2=700;
-        //p.setColor(Color.RED);
+
         int r1=255;
         int g1=0;
         int b1=0;

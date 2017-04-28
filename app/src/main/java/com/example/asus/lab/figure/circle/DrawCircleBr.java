@@ -35,19 +35,11 @@ public class DrawCircleBr {
         this.y2=y2;
     }
     public void drawCircleBr(Canvas canvas , Paint p){
-        p.setStrokeWidth(1);
-        p.setColor(Color.BLACK);
-        x1=0;
-        y1=0;
-
-        float r=679;//(float)sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+        float r=(float)sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
 
         int X=0, Y=(int)r;
         int f=1-Y;
-        canvas.drawPoint(x1,y1+r,p);
-        canvas.drawPoint(x1,y1-r,p);
-        canvas.drawPoint(x1+r,y1,p);
-        canvas.drawPoint(x1-r,y1,p);
+        drawP(canvas, p,r);
         while(X<=Y){
             if(f>0){
                 Y=Y-1;
@@ -58,18 +50,28 @@ public class DrawCircleBr {
                 //X=X+1;
             }
             X=X+1;
-                canvas.drawPoint(x1 + X, y1 + Y, p);
-                canvas.drawPoint(x1 - X, y1 + Y, p);
-                canvas.drawPoint(x1 + X, y1 - Y, p);
-                canvas.drawPoint(x1 - X, y1 - Y, p);
-                canvas.drawPoint(x1 + Y, y1 + X, p);
-                canvas.drawPoint(x1 - Y, y1 + X, p);
-                canvas.drawPoint(x1 + Y, y1 - X, p);
-                canvas.drawPoint(x1 - Y, y1 - X, p);
+            drawD(X,Y,canvas, p);
 
 
         }
 
 
     }
+    public void drawD( float X, float Y, Canvas canvas, Paint p){
+        canvas.drawPoint(x1 + X, y1 + Y, p);
+        canvas.drawPoint(x1 - X, y1 + Y, p);
+        canvas.drawPoint(x1 + X, y1 - Y, p);
+        canvas.drawPoint(x1 - X, y1 - Y, p);
+        canvas.drawPoint(x1 + Y, y1 + X, p);
+        canvas.drawPoint(x1 - Y, y1 + X, p);
+        canvas.drawPoint(x1 + Y, y1 - X, p);
+        canvas.drawPoint(x1 - Y, y1 - X, p);
+    }
+    public void drawP(Canvas canvas, Paint p, float r){
+        canvas.drawPoint(x1,y1+r,p);
+        canvas.drawPoint(x1,y1-r,p);
+        canvas.drawPoint(x1+r,y1,p);
+        canvas.drawPoint(x1-r,y1,p);
+    }
+
 }

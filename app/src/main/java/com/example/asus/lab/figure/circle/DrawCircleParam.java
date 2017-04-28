@@ -44,24 +44,17 @@ public class DrawCircleParam {
         this.y2=y2;
     }
     public void drawCircleParam(Canvas canvas , Paint p){
-        p.setStrokeWidth(1);
-        p.setColor(Color.RED);
-        float X, Y;
-        float X0=0;//x1;
-        float Y0=0;//y1
-        float r=679;//(float)sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-        for(X=0;X<Math.round(r/(sqrt(2.0)));X++){
-            Y=/*(float)*/Math.round(sqrt(r*r-X*X));
-            canvas.drawPoint(X0+X,Y0+Y,p);
-            canvas.drawPoint(X0+Y,Y0+X,p);
-            canvas.drawPoint(X0+Y,Y0-X,p);
-            canvas.drawPoint(X0+X,Y0-Y,p);
-            canvas.drawPoint(X0-X,Y0-Y,p);
-            canvas.drawPoint(X0-Y,Y0-X,p);
-            canvas.drawPoint(X0-Y,Y0+X,p);
-            canvas.drawPoint(X0-X,Y0+Y,p);
 
+        float X, Y;
+        float X0=x1;
+        float Y0=y1;
+        float r=(float)sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+        for(X=0;X<Math.round(r/(sqrt(2.0)));X++) {
+            Y =/*(float)*/Math.round(sqrt(r * r - X * X));
+            draw(X0,Y0, X, Y,canvas, p);
         }
+        }
+
        /* int R=(int) Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
         System.out.println("R"+R);
         int a=1;
@@ -86,5 +79,16 @@ public class DrawCircleParam {
            //canvas.drawPoint((float)x2,(float)y2,p);
             drawLineParam.drawLineParam(canvas, p);
         }*/
+       public void draw(float X0, float Y0, float X, float Y,Canvas canvas, Paint p){
+               canvas.drawPoint(X0+X,Y0+Y,p);
+               canvas.drawPoint(X0+Y,Y0+X,p);
+               canvas.drawPoint(X0+Y,Y0-X,p);
+               canvas.drawPoint(X0+X,Y0-Y,p);
+               canvas.drawPoint(X0-X,Y0-Y,p);
+               canvas.drawPoint(X0-Y,Y0-X,p);
+               canvas.drawPoint(X0-Y,Y0+X,p);
+               canvas.drawPoint(X0-X,Y0+Y,p);
+
+       }
     }
-}
+

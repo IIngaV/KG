@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -25,7 +26,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +36,7 @@ import android.widget.Toast;
 import com.example.asus.lab.bmp.BitmapException;
 import com.example.asus.lab.bmp.FileIO;
 import com.example.asus.lab.figure.line.DrawLineBr;
+import com.skydoves.colorpickerview.ColorPickerView;
 
 import static java.lang.Math.abs;
 
@@ -258,6 +262,69 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                         }
                     });
                     ofd3.show();
+                    return true;
+                case R.id.action_color_picker:
+                    LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View layout = inflater.inflate(R.layout.color_picker, (ViewGroup)findViewById(R.id.new_color_picker));
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                            .setView(layout);
+                    final AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    final ColorPickerView colorPickerView = (ColorPickerView) alertDialog.findViewById(R.id.colorPickerView);
+                    colorPickerView.setColorListener(new ColorPickerView.ColorListener() {
+                        @Override
+                        public void onColorSelected(int color) {
+                            drawView.getP().setColor(colorPickerView.getColor());
+                        }
+                    });
+                    Button button = (Button)layout.findViewById(R.id.color_picker_button);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            alertDialog.cancel();
+                        }
+                    });
+                    return true;
+                case R.id.action_color_picker1:
+                    LayoutInflater inflater2 = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View layout2 = inflater2.inflate(R.layout.color_picker, (ViewGroup)findViewById(R.id.new_color_picker));
+                    final AlertDialog.Builder builder2 = new AlertDialog.Builder(this)
+                            .setView(layout2);
+                    final AlertDialog alertDialog2 = builder2.create();
+                    alertDialog2.show();
+                    final ColorPickerView colorPickerView2 = (ColorPickerView) alertDialog2.findViewById(R.id.colorPickerView);
+                    colorPickerView2.setColorListener(new ColorPickerView.ColorListener() {
+                        @Override
+                        public void onColorSelected(int color) {
+                            drawView.getP().setColor(colorPickerView2.getColor());
+                        }
+                    });
+                    Button button2 = (Button)layout2.findViewById(R.id.color_picker_button);
+                    button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            alertDialog2.cancel();
+                        }
+                    });
+                    return true;
+                case R.id.action_brush_width:
+                    LayoutInflater inflater1 = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View layout1 = inflater1.inflate(R.layout.settings_dialog, (ViewGroup)findViewById(R.id.new_brush_root));
+                    final AlertDialog.Builder builder1 = new AlertDialog.Builder(this)
+                            .setView(layout1);
+                    final AlertDialog alertDialog1 = builder1.create();
+                    alertDialog1.show();
+                    final EditText brushSize = (EditText)layout1.findViewById(R.id.new_brush_size_editText);
+                    Button button1 = (Button)layout1.findViewById(R.id.button_new_brush_size);
+                    button1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Paint newMPaint = drawView.getP();
+                            newMPaint.setStrokeWidth(Float.parseFloat(String.valueOf(brushSize.getText())));
+                            drawView.setP(newMPaint);
+                            alertDialog1.cancel();
+                        }
+                    });
                     return true;
                 /*case R.id.nav_scale:
                 LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);

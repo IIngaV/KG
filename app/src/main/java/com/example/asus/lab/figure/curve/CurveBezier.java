@@ -56,11 +56,11 @@ public class CurveBezier {
                 }
             }
             p.setStrokeWidth(1);
-            paint.setColor(Color.BLACK);
+            //paint.setColor(Color.BLACK);
             canvas.drawPoint(Math.round(arr[0].x),Math.round(arr[0].y),p);
         }
         p.setStrokeWidth(1);
-        paint.setColor(Color.BLACK);
+        //paint.setColor(Color.BLACK);
         canvas.drawPoint(q0.x,q0.y,paint);
         canvas.drawPoint(q1.x,q1.y,paint);
         String n = q0.x + " " + q0.y;

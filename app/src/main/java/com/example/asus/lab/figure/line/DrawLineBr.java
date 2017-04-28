@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import com.example.asus.lab.DrawView;
 import com.example.asus.lab.Point;
 
+import java.util.ArrayList;
+
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.max;
 import static java.lang.StrictMath.signum;
@@ -40,22 +42,8 @@ public class DrawLineBr {
     public void setY2(float y2){
         this.y2=y2;
     }
-   /* public float getX3(){
-        return x3;
-    }
-    public void setX3(float x3){
-        this.x3=x3;
-    }
-    public float getY3(){
-        return y3;
-    }*/
-    public void setY3(float y3){
-        this.y3=y3;
-    }
-
     public void drawLineBr(Canvas canvas , Paint p){
-        p.setStrokeWidth(10);
-        p.setColor(Color.GREEN);
+
         x1=getX1();
         x2=getX2();
         y1=getY1();
@@ -102,8 +90,5 @@ public class DrawLineBr {
             }
             c=c+dc1;
         }
-
-
-
     }
 }
