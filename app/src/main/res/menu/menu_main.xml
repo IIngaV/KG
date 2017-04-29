@@ -81,6 +81,11 @@
                 android:title="Read"
                 app:showAsAction="never"/>
             <item
+                android:id="@+id/nav_scale"
+                android:orderInCategory="100"
+                android:title="nav_scale"
+                app:showAsAction="never"/>
+            <item
                 android:id="@+id/action_begin"
                 android:orderInCategory="100"
                 android:title="Begin"

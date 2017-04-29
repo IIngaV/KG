@@ -41,7 +41,7 @@ public class DrawView extends View {
     private ObjFile objFile;
     private Limits limits;
     private Point point;
-
+    private int scale = 0;
     MainActivity mainActivity=MainActivity.ma;
     private CurveBezier curveBezier;
     private ArrayList<PointF> pointFs;
@@ -100,8 +100,14 @@ public class DrawView extends View {
         pointFs = new ArrayList<>(mainActivity.col);
     }
 
-
-
+    public int getScale() {
+        return scale;
+    }
+    public void setScale(int scale) {
+        this.scale = scale;
+        setScaleX(scale);
+        setScaleY(scale);
+    }
     public Paint getP(){
         return p;
     }

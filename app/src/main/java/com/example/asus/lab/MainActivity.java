@@ -306,6 +306,26 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                             alertDialog2.cancel();
                         }
                     });
+
+                    /*View layout3 = inflater2.inflate(R.layout.color_picker, (ViewGroup)findViewById(R.id.new_color_picker));
+                    final AlertDialog.Builder builder3 = new AlertDialog.Builder(this)
+                            .setView(layout2);
+                    final AlertDialog alertDialog3 = builder3.create();
+                    alertDialog3.show();*/
+                    final ColorPickerView colorPickerView3 = (ColorPickerView) alertDialog2.findViewById(R.id.colorPickerView);
+                    colorPickerView3.setColorListener(new ColorPickerView.ColorListener() {
+                        @Override
+                        public void onColorSelected(int color) {
+                            drawView.getP().setColor(colorPickerView3.getColor());
+                        }
+                    });
+                    Button button3 = (Button)layout2.findViewById(R.id.color_picker_button);
+                    button3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            alertDialog2.cancel();
+                        }
+                    });
                     return true;
                 case R.id.action_brush_width:
                     LayoutInflater inflater1 = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -326,37 +346,45 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                         }
                     });
                     return true;
-                /*case R.id.nav_scale:
-                LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View layout = inflater.inflate(R.layout.scale_dialog, (ViewGroup)findViewById(R.id.scale_dialog_root_element));
-                final AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                        .setView(layout);
-                final AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-                SeekBar sb = (SeekBar)layout.findViewById(R.id.scale_dialog_seekbar);
-                final TextView tv = (TextView)layout.findViewById(R.id.scale_dialog_textView);
-                tv.setText("1");
-                Button button = (Button)layout.findViewById(R.id.scale_dialog_button);
-                final int[] scale = {0};
-                sb.setMax(25);
-                sb.setProgress(1);
-                sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        tv.setText(String.valueOf(progress));
-                        scale[0] = progress;
-                    }
+                case R.id.nav_scale:
+                    LayoutInflater inflater3 = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View layout3 = inflater3.inflate(R.layout.scale_dialog, (ViewGroup)findViewById(R.id.scale_dialog_root_element));
+                    final AlertDialog.Builder builder3 = new AlertDialog.Builder(this)
+                            .setView(layout3);
+                    final AlertDialog alertDialog3 = builder3.create();
+                    alertDialog3.show();
+                    SeekBar sb = (SeekBar)layout3.findViewById(R.id.scale_dialog_seekbar);
+                    final TextView tv = (TextView)layout3.findViewById(R.id.scale_dialog_textView);
+                    tv.setText("1");
+                    Button button4 = (Button)layout3.findViewById(R.id.scale_dialog_button);
+                    final int[] scale = {0};
+                    sb.setMax(25);
+                    sb.setProgress(1);
+                    sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                            tv.setText(String.valueOf(progress));
+                            scale[0] = progress;
+                        }
 
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
+                        @Override
+                        public void onStartTrackingTouch(SeekBar seekBar) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        @Override
+                        public void onStopTrackingTouch(SeekBar seekBar) {
 
-                    }
-                });*/
+                        }
+                    });
+                    button4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            drawView.setScale(scale[0]);
+                            alertDialog3.cancel();
+                        }
+                    });
             }
+
         return super.onOptionsItemSelected(item);
     }
 

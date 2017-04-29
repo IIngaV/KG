@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scale_dialog_root_element"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+        <SeekBar
+            android:id="@+id/scale_dialog_seekbar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/scale_dialog_button"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/scale_dialog_button">
+        </SeekBar>
+
+        <Button
+            android:id="@+id/scale_dialog_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:layout_below="@+id/scale_dialog_seekbar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="32dp"
+            android:layout_alignParentRight="true">
+        </Button>
+
+        <TextView
+            android:id="@+id/scale_dialog_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/scale_dialog_button"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/scale_dialog_seekbar"
+            android:text=""
+            android:textAlignment="center"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/scale_dialog_seekbar"
+            android:layout_alignParentLeft="true" />
+
+
+</RelativeLayout>
