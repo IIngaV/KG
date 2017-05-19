@@ -4,11 +4,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.asus.lab.bmp.FileIO;
 
 public class OpenFileDialog extends AlertDialog.Builder {
-
+    private MainActivity mainActivity = MainActivity.ma;
     public interface OnFileNameSetListener {
         void onSet(String fileName);
     }
@@ -22,6 +23,7 @@ public class OpenFileDialog extends AlertDialog.Builder {
         mListener = l;
 
         setTitle("Имя файла");
+        Toast.makeText(mainActivity, "ur", Toast.LENGTH_SHORT).show();
         FileIO f = new FileIO();
         names = f.listFiles();
         setSingleChoiceItems(names, -1, null); //Если мы в значение выбранного элемента передаем -1,

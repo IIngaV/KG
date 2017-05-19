@@ -1,11 +1,16 @@
 package com.example.asus.lab.bmp;
 
 import android.graphics.Bitmap;
+import android.widget.Toast;
 
+import com.example.asus.lab.MainActivity;
+
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 //картинка идет как бы перевернутая вверх ногами.
 // То есть сначала записана нижняя строка, потом предпоследняя и так далее до самого верха.
@@ -17,15 +22,25 @@ import java.io.IOException;
 // в этих файлах значения пикселей растрового массива непосредственно характеризуют значения цветов RGB
 
 public class FileBitmapWriter {
-    private FileOutputStream fs;
+    private OutputStream fs;
 
-    public FileBitmapWriter(File file) throws FileNotFoundException {
-        fs = new FileOutputStream(file);
+
+    public FileBitmapWriter(File file)  {
+        System.err.println(" FileBitmapWriter(File file) ");
+try {
+    Toast.makeText(MainActivity.ma, "file: " + file.toString(), Toast.LENGTH_SHORT).show();
+    fs = new BufferedOutputStream( new FileOutputStream(file));
+    Toast.makeText(MainActivity.ma, "777", Toast.LENGTH_SHORT).show();
+}
+catch(Exception e){
+    e.printStackTrace();
+}
+        System.err.println(" FileBitmapWriter(File file) end");
     }
 
     public boolean write(Bitmap bmp) throws IOException {
-        int width = bmp.getWidth();
-        int height = bmp.getHeight();
+        int width = 400/*bmp.getWidth()*/;
+        int height = 600/*bmp.getHeight()*/;
         int spacerSize = 0;//выравнивание
         if (((width * 3) % 4) > 0) {  //если строка кратна 4 , то нулями не докидываем
             spacerSize = 4 - (width * 3) % 4;
@@ -64,9 +79,13 @@ public class FileBitmapWriter {
         writeBytes(0, 4);
         //количество основных цветов изображения
         writeBytes(0, 4);
-
+        System.err.println("for (int i = height - 1; i >= 0; i--)");
+        System.err.println("height="+height);
+        System.err.println("width="+width);
         for (int i = height - 1; i >= 0; i--) {
+            System.err.println("i="+i);
             for (int j = 0; j < width; j++) {
+                System.err.println("j="+j);
                 int color = bmp.getPixel(j, i);
                 if (color == 0) {  //0 - прозрачный цвет
                     writeBytes(0xFFFFFF, 3); // поэтому пишем белый цвет в файл
@@ -75,7 +94,11 @@ public class FileBitmapWriter {
                     writeBytes((color >> 8) & 0xFF, 1);
                     writeBytes((color >> 16) & 0xFF, 1);
                 }
+
             }
+
+            //System.err.println(" writeBytes(0, spacerSize);)");
+
             writeBytes(0, spacerSize);
         }
 

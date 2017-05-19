@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        S_Log.initDebugLog(this.getPackageName(),true);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -383,7 +384,12 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                             alertDialog3.cancel();
                         }
                     });
+                case R.id.action_clean:
+                    drawView.clean();
+
             }
+
+
 
         return super.onOptionsItemSelected(item);
     }

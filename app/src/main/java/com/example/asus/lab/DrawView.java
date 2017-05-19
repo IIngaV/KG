@@ -63,7 +63,7 @@ public class DrawView extends View {
         //p = new Paint();
 //
 
-    }
+}
     public Bitmap getBitmap(){
         return bitmap;
     }
@@ -304,5 +304,9 @@ public class DrawView extends View {
     public void drawLineBese(){
         curveBezier.draw(kol , canvas,p);
         kol = 0;
+    }
+
+    public void clean() {
+        bitmap.eraseColor(Color.WHITE);
     }
 }

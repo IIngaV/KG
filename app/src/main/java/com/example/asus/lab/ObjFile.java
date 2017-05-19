@@ -24,13 +24,13 @@ public class ObjFile {
     private ArrayList<Point> verts;
     private ArrayList<String[]> faces;
     private File sdPath;
-    private DrawLineBr drawLineBr;
+   // private DrawLineBr drawLineBr;
 
 
     public ObjFile(){
         verts = new ArrayList<>();
         faces = new ArrayList<>();
-        drawLineBr=new DrawLineBr();
+        //drawLineBr=new DrawLineBr();
 
         // проверяем доступность SD
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -52,7 +52,7 @@ public class ObjFile {
 
     public boolean readFile() {
         // формируем объект File, который содержит путь к файлу
-        long start = System.currentTimeMillis();
+        //long start = System.currentTimeMillis();
         File sdFile = new File(sdPath, file);
         try {
             // открываем поток для чтения
@@ -77,7 +77,7 @@ public class ObjFile {
                     }
                 }
             }
-            long timeWorkCode = System.currentTimeMillis() - start;
+           // long timeWorkCode = System.currentTimeMillis() - start;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
