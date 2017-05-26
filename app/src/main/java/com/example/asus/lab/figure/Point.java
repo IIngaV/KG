@@ -1,4 +1,4 @@
-package com.example.asus.lab;
+package com.example.asus.lab.figure;
 
 /**
  * Created by a s u s on 24.03.2017.

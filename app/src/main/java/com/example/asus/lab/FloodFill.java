@@ -1,9 +1,9 @@
 package com.example.asus.lab;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Point;
-import android.view.MotionEvent;
+
+import com.example.asus.lab.figure.Brush;
 
 import java.util.Stack;
 

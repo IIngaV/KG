@@ -1,12 +1,11 @@
-package com.example.asus.lab;
+package com.example.asus.lab.figure;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
-import android.widget.SeekBar;
-import android.widget.Toast;
 
+import com.example.asus.lab.DrawView;
+import com.example.asus.lab.FloodFill;
 import com.example.asus.lab.figure.line.DrawLineBr;
 
 import static java.lang.StrictMath.signum;

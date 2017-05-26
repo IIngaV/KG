@@ -1,4 +1,4 @@
-package com.example.asus.lab;
+package com.example.asus.lab.bmp;
 
 import java.io.IOException;
 import java.io.OutputStream;

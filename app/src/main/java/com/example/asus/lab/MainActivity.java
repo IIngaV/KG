@@ -1,31 +1,17 @@
 package com.example.asus.lab;
 
 import android.app.AlertDialog;
-import android.app.usage.UsageEvents;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.os.TransactionTooLargeException;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +21,8 @@ import android.widget.Toast;
 
 import com.example.asus.lab.bmp.BitmapException;
 import com.example.asus.lab.bmp.FileIO;
+import com.example.asus.lab.bmp.OpenFileDialog;
+import com.example.asus.lab.bmp.S_Log;
 import com.example.asus.lab.figure.line.DrawLineBr;
 import com.skydoves.colorpickerview.ColorPickerView;
 
@@ -84,57 +72,7 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-   /* public void onClick(View v) {
-           AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle("Выберите количество точек")
-                    .setCancelable(false)
-                    .setNegativeButton("2",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    col=2;
-                                    colFake = 2;
-                                    Toast toast6=Toast.makeText(getApplicationContext(),
-                                            "Кривая Безье! 2 точки",
-                                            Toast.LENGTH_SHORT);
-                                    toast6.setGravity(Gravity.CENTER, 0, 0);
-                                    toast6.show();
-                                    DrawView.instrument=6;
-                                    dialog.cancel();
-                                }
-                            })
-                    .setPositiveButton("4",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        col=4;
-                        colFake = 4;
-                        Toast toast6=Toast.makeText(getApplicationContext(),
-                                "Кривая Безье! 4 точек",
-                                Toast.LENGTH_SHORT);
-                        toast6.setGravity(Gravity.CENTER, 0, 0);
-                        toast6.show();
-                        DrawView.instrument=6;
-                        dialog.cancel();
-                    }
-                })
-                    .setNeutralButton("3",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    col=3;
-                                    colFake = 3;
-                                    Toast toast6=Toast.makeText(getApplicationContext(),
-                                            "Кривая Безье! 3 точки",
-                                            Toast.LENGTH_SHORT);
-                                    toast6.setGravity(Gravity.CENTER, 0, 0);
-                                    toast6.show();
-                                    DrawView.instrument=6;
-                                    dialog.cancel();
-                                }
-                            });
-            System.out.print(col);
-            AlertDialog alert = builder.create();
-            alert.show();
 
-    }*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -386,10 +324,11 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                     });
                 case R.id.action_clean:
                     drawView.clean();
-
+                case R.id.action_mosaic:
+                    DrawView.instrument = 11;
+                    Toast.makeText(ma, getString(R.string.takeMosaic), Toast.LENGTH_SHORT).show();
+                    drawView.drawMosaic();
             }
-
-
 
         return super.onOptionsItemSelected(item);
     }

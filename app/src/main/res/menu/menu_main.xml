@@ -100,6 +100,11 @@
                 android:orderInCategory="100"
                 android:title="Rubber"
                 app:showAsAction="never"/>
+            <item
+                android:id="@+id/action_mosaic"
+                android:orderInCategory="100"
+                android:title="Mosaic"
+                app:showAsAction="never"/>
         </menu>
     </item>
     <item

@@ -1,4 +1,4 @@
-package com.example.asus.lab;
+package com.example.asus.lab.bmp;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import android.content.Context;
 import android.os.Environment;
 
 public class S_File {

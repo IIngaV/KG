@@ -1,15 +1,12 @@
-package com.example.asus.lab;
+package com.example.asus.lab.file;
 
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Environment;
 import android.util.Log;
 
-import com.example.asus.lab.figure.line.DrawLineBr;
-import com.example.asus.lab.figure.line.DrawLineParam;
+import com.example.asus.lab.figure.Point;
 
 import java.io.BufferedReader;
 import java.io.File;

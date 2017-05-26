@@ -1,4 +1,4 @@
-package com.example.asus.lab;
+package com.example.asus.lab.figure;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

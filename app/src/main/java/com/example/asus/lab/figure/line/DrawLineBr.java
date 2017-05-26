@@ -1,13 +1,9 @@
 package com.example.asus.lab.figure.line;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.asus.lab.DrawView;
-import com.example.asus.lab.Point;
-
-import java.util.ArrayList;
 
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.max;

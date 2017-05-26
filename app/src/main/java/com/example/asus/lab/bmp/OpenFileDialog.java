@@ -1,4 +1,4 @@
-package com.example.asus.lab;
+package com.example.asus.lab.bmp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.asus.lab.MainActivity;
 import com.example.asus.lab.bmp.FileIO;
 
 public class OpenFileDialog extends AlertDialog.Builder {

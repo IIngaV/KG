@@ -6,18 +6,24 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.asus.lab.figure.Brush;
+import com.example.asus.lab.figure.Limits;
+import com.example.asus.lab.figure.Point;
 import com.example.asus.lab.figure.circle.DrawCircleBr;
 import com.example.asus.lab.figure.circle.DrawCircleParam;
 import com.example.asus.lab.figure.curve.CurveBezier;
 import com.example.asus.lab.figure.line.DrawLineBr;
 import com.example.asus.lab.figure.line.DrawLineParam;
+import com.example.asus.lab.file.ObjFile;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import static java.lang.Math.round;
 import static java.lang.StrictMath.abs;
@@ -46,8 +52,7 @@ public class DrawView extends View {
     private CurveBezier curveBezier;
     private ArrayList<PointF> pointFs;
     int kol=0;
-    boolean qwe = false;
-    //public static int in=MainActivity.col;
+
     private Paint p;
 
     private FloodFill floodFill;
@@ -118,26 +123,6 @@ public class DrawView extends View {
 
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(bitmap,0,0, p);
-            /*int x1=60;
-            int y1=70;
-            int x2=500;
-            int y2=490;
-            // заливка канвы цветом
-            canvas.drawARGB(80, 102, 204, 255);
-
-            // настройка кисти
-            // красный цвет
-            p.setColor(Color.RED);
-            // толщина линии = 10
-            p.setStrokeWidth(10);
-
-            // рисуем точку (50,50)
-            canvas.drawPoint(50, 50, p);
-
-            /*for (int i = 60, j = 70; i < 500; i++, j++)
-                canvas.drawPoint(i, j, p);*/
-
-
     }
 
     public void drawPoint(float x, float y) {
@@ -304,6 +289,19 @@ public class DrawView extends View {
     public void drawLineBese(){
         curveBezier.draw(kol , canvas,p);
         kol = 0;
+    }
+    public void drawMosaic() {
+        Random rand = new Random();
+        //System.out.println(getmPaint().getStrokeWidth()+ "   " +bitmap.getHeight()+ "   " + bitmap.getWidth() + "   " + canvas.getHeight()+ "   " + canvas.getWidth());
+
+        for (int i = 0; i < bitmap.getHeight(); i += (int) getP().getStrokeWidth()) {
+            for (int j = 0; j < bitmap.getWidth(); j += (int) getP().getStrokeWidth()) {
+                int paintColor = Color.rgb(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+                p.setColor(paintColor);
+                Rect rect = new Rect(i, j, (int) getP().getStrokeWidth() + i, (int) getP().getStrokeWidth() + j);
+                canvas.drawRect(rect, p);
+            }
+        }
     }
 
     public void clean() {
