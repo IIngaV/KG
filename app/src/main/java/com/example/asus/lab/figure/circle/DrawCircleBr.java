@@ -51,11 +51,7 @@ public class DrawCircleBr {
             }
             X=X+1;
             drawD(X,Y,canvas, p);
-
-
         }
-
-
     }
     public void drawD( float X, float Y, Canvas canvas, Paint p){
         canvas.drawPoint(x1 + X, y1 + Y, p);
