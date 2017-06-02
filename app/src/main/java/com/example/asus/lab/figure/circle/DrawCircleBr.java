@@ -1,14 +1,17 @@
 package com.example.asus.lab.figure.circle;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
-import static java.lang.Math.pow;
+import com.example.asus.lab.CheckLimitsMethod;
+import com.example.asus.lab.DrawMethod;
+import com.example.asus.lab.figure.Paint.Paintm;
+
 import static java.lang.Math.sqrt;
 
 
-public class DrawCircleBr {
+public class DrawCircleBr extends CheckLimitsMethod{
     private float x1,x2,y1,y2;
     public float getX1(){
         return x1;
@@ -53,7 +56,14 @@ public class DrawCircleBr {
             drawD(X,Y,canvas, p);
         }
     }
-    public void drawD( float X, float Y, Canvas canvas, Paint p){
+
+    public boolean checkLimits(Bitmap bmp, int x, int y) {
+        int width = bmp.getWidth();
+        int heigth = bmp.getHeight();
+        return (x >= 0 && x < width
+                && y >= 0 && y < heigth);
+    }
+    public void drawD(float X, float Y, Canvas canvas, Paint p){
         canvas.drawPoint(x1 + X, y1 + Y, p);
         canvas.drawPoint(x1 - X, y1 + Y, p);
         canvas.drawPoint(x1 + X, y1 - Y, p);

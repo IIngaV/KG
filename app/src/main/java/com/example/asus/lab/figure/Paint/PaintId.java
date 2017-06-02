@@ -32,8 +32,8 @@ public class PaintId {
         _id = id;
     }
 
-    public Paint clone() {
-        Paint p = new Paint();
+    public Paintm clone() {
+        Paintm p = new Paintm();
         p.setColor(_color1);
         p.setColor2(_color2);
         p.setId(_id);

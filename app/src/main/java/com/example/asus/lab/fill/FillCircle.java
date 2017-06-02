@@ -2,8 +2,11 @@ package com.example.asus.lab.fill;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
-import com.example.asus.lab.figure.Paint.Paint;
+
+import com.example.asus.lab.CheckLimitsMethod;
+import com.example.asus.lab.figure.Paint.Paintm;
 import com.example.asus.lab.figure.circle.DrawCircleBr;
 
 /**
@@ -11,12 +14,16 @@ import com.example.asus.lab.figure.circle.DrawCircleBr;
  */
 
 public class FillCircle extends DrawCircleBr {
-    public void draw(Canvas canvas, int[] points, Paint paint) {
+    private Canvas canvas;
+
+    public void draw(Bitmap bmp, int[] points, Paint paint) {
         int color = paint.getColor();
-        int color2 = paint.getColor2();
+        //int color2 = paint.getColor2();
         int r = (int) Math.sqrt((points[2] - points[0]) * (points[2] - points[0]) + (points[3] - points[1]) * (points[3] - points[1]));
         int x = 0, y = r, f = 1 - r;
-        fill4Lines(canvas, points[0], points[1], x, y, color2);
+        canvas = new Canvas(bmp);
+
+        fill4Lines(bmp, points[0], points[1], x, y, color);
         while (x <= y) {
             if (f > 0) {
                 y--;
@@ -25,13 +32,13 @@ public class FillCircle extends DrawCircleBr {
                 f += 2 * x + 3;
             }
             x++;
-            fill4Lines(canvas, points[0], points[1], x, y, color2);
+            fill4Lines(bmp, points[0], points[1], x, y, color);
         }
 
         x = 0;
         y = r;
         f = 1 - r;
-        drawD( x, y,canvas, paint);
+        drawD(x, y,canvas, paint);
         while (x <= y) {
             if (f > 0) {
                 y--;
@@ -40,25 +47,27 @@ public class FillCircle extends DrawCircleBr {
                 f += 2 * x + 3;
             }
             x++;
-            setPixel(canvas, points[0], points[1], x, y, color);
+            drawD( x, y,canvas, paint);
         }
     }
 
-    private void fillLine(Canvas canvas, int x1, int x2, int y, int color) {
+    private void fillLine(Bitmap bmp, int x1, int x2, int y, int color) {
         for (int i = x1 + 1; i < x2; i++) {
-            if (checkLimits(canvas, i, y)) {
-                canvas.setPixel(i, y, color);
+            if (checkLimits(bmp, i, y)) {
+                bmp.setPixel(i, y, color);
             }
         }
     }
 
-    private void fill4Lines(Canvas canvas, int x0, int y0, int x, int y, int color) {
-        fillLine(canvas, x0 - x, x0 + x, y0 + y, color);
+    private void fill4Lines(Bitmap bmp, int x0, int y0, int x, int y, int color) {
+        fillLine(bmp, x0 - x, x0 + x, y0 + y, color);
 
-        fillLine(canvas, x0 - y, x0 + y, y0 + x, color);
+        fillLine(bmp, x0 - y, x0 + y, y0 + x, color);
 
-        fillLine(canvas, x0 - y, x0 + y, y0 - x, color);
+        fillLine(bmp, x0 - y, x0 + y, y0 - x, color);
 
-        fillLine(canvas, x0 - x, x0 + x, y0 - y, color);
+        fillLine(bmp, x0 - x, x0 + x, y0 - y, color);
     }
+
+
 }

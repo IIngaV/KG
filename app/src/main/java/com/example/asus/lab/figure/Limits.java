@@ -182,7 +182,7 @@ public class Limits {
         floodFill.setY((int)lb.getY1());
         floodFill.fillBackground(brush);
     }
-    /*public void fill(Canvas canvas , Paint p){
+    /*public void fill(Canvas canvas , Paintm p){
         new SeedFill(Color.YELLOW).fillBackground((int) ((x3 - Math.round(Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1))) + x2) / 2), (int) ((y3 - Math.round(Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1))) + y2) / 2));
     }*/
 }

@@ -2,7 +2,7 @@ package com.example.asus.lab.figure.curve;
 
 import android.graphics.Bitmap;
 
-import com.example.asus.lab.figure.Paint.Paint;
+import com.example.asus.lab.figure.Paint.Paintm;
 
 /**
  * Created by a s u s on 26.05.2017.
@@ -10,7 +10,7 @@ import com.example.asus.lab.figure.Paint.Paint;
 
 public class CurveErmit {
 
-        public void draw(Bitmap bmp, int[] points, Paint paint) {
+        public void draw(Bitmap bmp, int[] points, Paintm paint) {
             int color = paint.getColor();
             float step = .001F;
             float t;

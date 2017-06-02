@@ -2,7 +2,7 @@ package com.example.asus.lab.figure.curve;
 
 import android.graphics.Bitmap;
 
-import com.example.asus.lab.figure.Paint.Paint;
+import com.example.asus.lab.figure.Paint.Paintm;
 
 /**
  * Created by a s u s on 26.05.2017.
@@ -53,7 +53,7 @@ public class CurveBSpline {
             return N;
         }
 
-        public void draw(Bitmap bmp, int[] points, Paint paint) {
+        public void draw(Bitmap bmp, int[] points, Paintm paint) {
             int color = paint.getColor();
             int n = points.length / 2;
             if (n != _n) {

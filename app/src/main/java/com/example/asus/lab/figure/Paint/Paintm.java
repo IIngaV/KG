@@ -4,7 +4,7 @@ package com.example.asus.lab.figure.Paint;
  * Created by a s u s on 26.05.2017.
  */
 
-public class Paint {
+public class Paintm {
 
     int _color1, _color2,_id;
 
@@ -32,8 +32,8 @@ public class Paint {
         _id = id;
     }
 
-    public Paint clone() {
-        Paint p = new Paint();
+    public Paintm clone() {
+        Paintm p = new Paintm();
         p.setColor(_color1);
         p.setColor2(_color2);
         p.setId(_id);
