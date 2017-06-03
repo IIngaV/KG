@@ -346,6 +346,9 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                     DrawView.instrument = 11;
                     Toast.makeText(ma, getString(R.string.takeMosaic), Toast.LENGTH_SHORT).show();
                     drawView.drawMosaic();
+                case R.id.action_snake:
+                    Toast.makeText(ma, "Snake", Toast.LENGTH_SHORT).show();
+
             }
 
         return super.onOptionsItemSelected(item);
