@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                     DrawView.instrument=4;
                    // drawView.drawCircleParam(x3,y3,x4,y4);
                     return true;
+
                 case R.id.action_curve_bezier:
                     DrawView.instrument=6;
                     buttonBezier.setVisibility(View.VISIBLE);
@@ -224,6 +225,27 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                         }
                     });
                     return true;
+                /*case R.id.action_line_ermit:
+                    onTouch.setHandler(new DrawErmit(d));
+                    break;
+                case R.id.action_b_spline:
+                    SetValueDialog ssd1 = new SetValueDialog(ma, new SetValueDialog.OnScaleSetListener() {
+
+                        public void onSet(float scale) {
+                            _onTouch.setHandler(new DrawBSpline(_pd, (int) scale));
+                        }
+                    }, "Порядок сплайна", 3, 2, 10);
+                    ssd1.show();
+                    break;
+                case R.id.action_nurbs_spline:
+                    SetValueDialog ssd2 = new SetValueDialog(ma, new SetValueDialog.OnScaleSetListener() {
+
+                        public void onSet(float scale) {
+                            _onTouch.setHandler(new DrawNURBSSpline(_pd, (int) scale));
+                        }
+                    }, "Порядок NURBS сплайна", 3, 2, 10);
+                    ssd2.show();
+                    break;*/
                 case R.id.action_color_picker1:
                     LayoutInflater inflater2 = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
                     View layout2 = inflater2.inflate(R.layout.color_picker, (ViewGroup)findViewById(R.id.new_color_picker));
@@ -246,11 +268,6 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                         }
                     });
 
-                    /*View layout3 = inflater2.inflate(R.layout.color_picker, (ViewGroup)findViewById(R.id.new_color_picker));
-                    final AlertDialog.Builder builder3 = new AlertDialog.Builder(this)
-                            .setView(layout2);
-                    final AlertDialog alertDialog3 = builder3.create();
-                    alertDialog3.show();*/
                     final ColorPickerView colorPickerView3 = (ColorPickerView) alertDialog2.findViewById(R.id.colorPickerView);
                     colorPickerView3.setColorListener(new ColorPickerView.ColorListener() {
                         @Override
@@ -323,6 +340,7 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                         }
                     });
                 case R.id.action_clean:
+                    Toast.makeText(ma, "Экран очищен.", Toast.LENGTH_SHORT).show();
                     drawView.clean();
                 case R.id.action_mosaic:
                     DrawView.instrument = 11;

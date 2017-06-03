@@ -4,12 +4,13 @@ import android.graphics.Bitmap;
 
 import com.example.asus.lab.CheckLimitsMethod;
 import com.example.asus.lab.figure.Paint.Paintm;
+import com.example.asus.lab.figure.circle.DrawCircleBr;
 
 /**
  * Created by a s u s on 02.06.2017.
  */
 
-public class FillRectangularMethod extends CheckLimitsMethod{
+public class FillRectangularMethod extends DrawCircleBr{
     public void draw(Bitmap bmp, int[] points, Paintm paint) {
         int color = paint.getColor();
         int color2 = paint.getColor2();
