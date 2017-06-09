@@ -4,8 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.example.asus.lab.DrawView;
-import com.example.asus.lab.FloodFill;
+import com.example.asus.lab.settings.DrawView;
+import com.example.asus.lab.fill.FloodFill;
 import com.example.asus.lab.figure.line.DrawLineBr;
 
 import static java.lang.StrictMath.signum;

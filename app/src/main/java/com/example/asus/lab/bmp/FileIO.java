@@ -5,11 +5,10 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.asus.lab.MainActivity;
+import com.example.asus.lab.settings.MainActivity;
 
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;

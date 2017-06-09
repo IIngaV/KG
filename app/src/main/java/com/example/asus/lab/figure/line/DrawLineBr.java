@@ -3,7 +3,7 @@ package com.example.asus.lab.figure.line;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.example.asus.lab.DrawView;
+import com.example.asus.lab.settings.DrawView;
 
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.max;

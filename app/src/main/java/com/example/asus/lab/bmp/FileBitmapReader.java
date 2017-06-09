@@ -2,11 +2,9 @@ package com.example.asus.lab.bmp;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.asus.lab.MainActivity;
+import com.example.asus.lab.settings.MainActivity;
 
 import java.io.File;
 import java.io.FileInputStream;

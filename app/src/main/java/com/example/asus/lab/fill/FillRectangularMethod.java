@@ -2,7 +2,6 @@ package com.example.asus.lab.fill;
 
 import android.graphics.Bitmap;
 
-import com.example.asus.lab.CheckLimitsMethod;
 import com.example.asus.lab.figure.Paint.Paintm;
 import com.example.asus.lab.figure.circle.DrawCircleBr;
 

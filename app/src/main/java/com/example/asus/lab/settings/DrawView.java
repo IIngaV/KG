@@ -1,4 +1,4 @@
-package com.example.asus.lab;
+package com.example.asus.lab.settings;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.asus.lab.fill.FloodFill;
 import com.example.asus.lab.Fractals.DrawFernFractals;
 import com.example.asus.lab.Fractals.DrawMandelbrotFractal;
 import com.example.asus.lab.Fractals.DrawPifagorFractal;
@@ -70,12 +71,18 @@ public class DrawView extends View {
         return brush;
     }
 
+    public AppSettings appSettings;
 
+    private Bitmap mainBitmap;
+    private Bitmap fakeBitmap;
 
     public DrawView(Context context) {
         super(context);
         //p = new Paintm();
-//
+         appSettings = MainActivity.appSettings;
+
+        mainBitmap = Bitmap.createBitmap(appSettings.getBitmapWidth(), appSettings.getBitmapHeight(), Bitmap.Config.ARGB_8888);
+        fakeBitmap = Bitmap.createBitmap(appSettings.getBitmapWidth(), appSettings.getBitmapHeight(), Bitmap.Config.ARGB_8888);
 
 }
     public Bitmap getBitmap(){
@@ -147,6 +154,16 @@ public class DrawView extends View {
             /*x = event.getX();
             y = event.getY();*/
 
+        /*case 9:
+        drawingTool = new HermiteCurve(mainBitmap, fakeBitmap);
+        break;
+        case 10:
+        drawingTool = new BSpline(mainBitmap, fakeBitmap);
+        break;
+        case 11:
+        drawingTool = new NURBSpline(mainBitmap, fakeBitmap);
+        break;
+*/
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: // нажатие
                 if(instrument==1){

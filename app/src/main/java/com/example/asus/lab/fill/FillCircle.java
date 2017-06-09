@@ -5,8 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 
-import com.example.asus.lab.CheckLimitsMethod;
-import com.example.asus.lab.figure.Paint.Paintm;
 import com.example.asus.lab.figure.circle.DrawCircleBr;
 
 /**

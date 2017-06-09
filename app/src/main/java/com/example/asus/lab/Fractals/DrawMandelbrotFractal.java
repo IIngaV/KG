@@ -3,9 +3,6 @@ package com.example.asus.lab.Fractals;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.widget.Toast;
-
-import com.example.asus.lab.MainActivity;
 
 /**
  * Created by a s u s on 09.06.2017.

@@ -1,13 +1,14 @@
-package com.example.asus.lab;
+package com.example.asus.lab.settings;
 
 import android.app.AlertDialog;
-import android.content.Intent;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +21,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.asus.lab.Fractals.DrawMandelbrotFractal;
+import com.example.asus.lab.R;
 import com.example.asus.lab.bmp.BitmapException;
 import com.example.asus.lab.bmp.FileIO;
 import com.example.asus.lab.bmp.OpenFileDialog;
 import com.example.asus.lab.bmp.S_Log;
-import com.example.asus.lab.figure.curve.CurveBSpline;
 import com.example.asus.lab.figure.line.DrawLineBr;
 import com.example.asus.lab.snake.GameActivity;
 import com.skydoves.colorpickerview.ColorPickerView;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
     DrawView drawView;
     DrawLineBr dlb;
     public static MainActivity ma;
-    public GameActivity ga;
+    public static AppSettings appSettings;
 
 
     /**
@@ -69,8 +69,9 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
         buttonBezier=(Button)findViewById(R.id.buttonBezier);
         buttonBezier.setVisibility(View.GONE);
         ma = MainActivity.this;
-
+        appSettings = new AppSettings();
 }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -383,8 +384,30 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                     toast13.show();
                     DrawView.instrument=22;
                     return true;
-
-
+                case R.id.action_line_ermit:
+                    Toast toast14=Toast.makeText(getApplicationContext(),
+                            "Кривая Эрмита!",
+                            Toast.LENGTH_SHORT);
+                    toast14.setGravity(Gravity.CENTER, 0, 0);
+                    toast14.show();
+                    DrawView.instrument=23;
+                    return true;
+                case R.id.action_b_spline:
+                    Toast toast15=Toast.makeText(getApplicationContext(),
+                            "B-Spline!",
+                            Toast.LENGTH_SHORT);
+                    toast15.setGravity(Gravity.CENTER, 0, 0);
+                    toast15.show();
+                    DrawView.instrument=24;
+                    return true;
+                case R.id.action_nurbs_spline:
+                    Toast toast16=Toast.makeText(getApplicationContext(),
+                            "NURBSpline!",
+                            Toast.LENGTH_SHORT);
+                    toast16.setGravity(Gravity.CENTER, 0, 0);
+                    toast16.show();
+                    DrawView.instrument=25;
+                    return true;
             }
 
         return super.onOptionsItemSelected(item);

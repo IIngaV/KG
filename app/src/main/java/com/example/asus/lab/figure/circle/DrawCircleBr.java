@@ -4,14 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.example.asus.lab.CheckLimitsMethod;
-import com.example.asus.lab.DrawMethod;
-import com.example.asus.lab.figure.Paint.Paintm;
-
 import static java.lang.Math.sqrt;
 
 
-public class DrawCircleBr extends CheckLimitsMethod{
+public class DrawCircleBr {
     private float x1,x2,y1,y2;
     public float getX1(){
         return x1;

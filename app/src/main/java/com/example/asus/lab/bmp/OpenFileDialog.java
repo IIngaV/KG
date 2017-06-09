@@ -6,8 +6,7 @@ import android.content.DialogInterface;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.asus.lab.MainActivity;
-import com.example.asus.lab.bmp.FileIO;
+import com.example.asus.lab.settings.MainActivity;
 
 public class OpenFileDialog extends AlertDialog.Builder {
     private MainActivity mainActivity = MainActivity.ma;
