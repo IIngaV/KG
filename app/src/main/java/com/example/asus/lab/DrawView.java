@@ -12,6 +12,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.asus.lab.Fractals.DrawFernFractals;
+import com.example.asus.lab.Fractals.DrawMandelbrotFractal;
+import com.example.asus.lab.Fractals.DrawPifagorFractal;
+import com.example.asus.lab.Fractals.DrawPlasmaFractal;
 import com.example.asus.lab.figure.Brush;
 import com.example.asus.lab.figure.Limits;
 import com.example.asus.lab.figure.Point;
@@ -52,6 +56,11 @@ public class DrawView extends View {
     private CurveBezier curveBezier;
     private ArrayList<PointF> pointFs;
     int kol=0;
+    public double a= 3.14/2;
+    private DrawPifagorFractal drawPifagorFractal;
+    private DrawMandelbrotFractal drawMandelbrotFractal;
+    private DrawFernFractals drawFernFractals;
+    private DrawPlasmaFractal drawPlasmaFractal;
 
     private Paint p;
 
@@ -92,9 +101,13 @@ public class DrawView extends View {
         drawCircleBr = new DrawCircleBr();
         objFile=new ObjFile();
         curveBezier=new CurveBezier();
+        drawPifagorFractal=new DrawPifagorFractal();
+        drawMandelbrotFractal = new DrawMandelbrotFractal();
+        drawFernFractals = new DrawFernFractals();
+        drawPlasmaFractal = new DrawPlasmaFractal();
         limits=new Limits();
         point=new Point(lastX,lastY);
-
+        int L= 200;
         floodFill = new FloodFill();
 
         brush = new Brush();
@@ -149,6 +162,7 @@ public class DrawView extends View {
                         drawLineBr.setX2(event.getX());
                         drawLineBr.setY2(event.getY());
                     }
+
                 }else if(instrument==3){
                     if(kol==0){
                         drawLineParam.setX1(event.getX());
@@ -192,6 +206,15 @@ public class DrawView extends View {
                     Toast.makeText(MainActivity.ma, String.valueOf(kol), Toast.LENGTH_SHORT).show();
                     curveBezier.addPoint(event.getX(),event.getY());
                 }
+                else if(instrument==20){
+                    drawMandelbrotFractal.drawMandelbrotFractal(canvas,p);
+                }
+                else if(instrument==21){
+                    drawPlasmaFractal.drawPlasmaFractal(canvas);
+                }
+                else if(instrument==22){
+                    drawFernFractals.drawFernFractals(canvas,p);
+                }
                 else if(instrument==10){
                     if(kol==0){
                         limits.setX1(event.getX());
@@ -205,6 +228,14 @@ public class DrawView extends View {
                         limits.setX3(event.getX());
                         limits.setY3(event.getY());
                     }
+                }else if(instrument==19){
+                    /*drawPoint(event.getX(), event.getY());
+                    lastX = event.getX();
+                    lastY = event.getY();*/
+                    drawPifagorFractal.setX1(event.getX());
+                    drawPifagorFractal.setY1(event.getY());
+                    lastX = event.getX();
+                    lastY = event.getY();
                 }
             case MotionEvent.ACTION_MOVE: // движение
                 if(instrument==1) {
@@ -281,6 +312,15 @@ public class DrawView extends View {
                     }*/
                     this.kol++;
                 }
+                else if(instrument== 19){
+                    float L=200;
+                    drawPifagorFractal.drawPifagorFractal(canvas,lastX,lastY,L,(float)a,p);
+                                    }
+
+                /*else if(instrument==20){
+                    Toast.makeText(MainActivity.ma, "fr2", Toast.LENGTH_SHORT).show();
+                    drawMandelbrotFractal.drawMandelbrotFractal(canvas,p);
+                }*/
 
         }
         invalidate();

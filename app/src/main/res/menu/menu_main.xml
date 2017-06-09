@@ -129,9 +129,29 @@
                 app:showAsAction="never"/>
         </menu>
     </item>
-    <item
-        android:id="@+id/action_snake"
-        android:orderInCategory="100"
-        android:title="Snake"
-        app:showAsAction="never"/>
+    <item android:title="Фракталы">
+        <menu>
+            <item
+                android:id="@+id/draw_pifagor_fractal"
+                android:orderInCategory="100"
+                android:title="Pifagor's fractal"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/draw_mandelbrot_fractal"
+                android:orderInCategory="100"
+                android:title="Mandelbrot's fractal"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/draw_plasma"
+                android:orderInCategory="100"
+                android:title="Plasma"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/draw_fern"
+                android:orderInCategory="100"
+                android:title="Fern"
+                app:showAsAction="never"/>
+            </menu>
+    </item>
+
 </menu>

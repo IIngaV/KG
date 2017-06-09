@@ -9,9 +9,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
-public class GameActivity extends Activity implements SensorEventListener {
+public class GameActivity extends AppCompatActivity implements SensorEventListener {
 
 	GameSurface surf;
 	Timer t;

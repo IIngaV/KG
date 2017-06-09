@@ -1,6 +1,7 @@
 package com.example.asus.lab;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -19,11 +20,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.asus.lab.Fractals.DrawMandelbrotFractal;
 import com.example.asus.lab.bmp.BitmapException;
 import com.example.asus.lab.bmp.FileIO;
 import com.example.asus.lab.bmp.OpenFileDialog;
 import com.example.asus.lab.bmp.S_Log;
+import com.example.asus.lab.figure.curve.CurveBSpline;
 import com.example.asus.lab.figure.line.DrawLineBr;
+import com.example.asus.lab.snake.GameActivity;
 import com.skydoves.colorpickerview.ColorPickerView;
 
 import static java.lang.Math.abs;
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
     DrawView drawView;
     DrawLineBr dlb;
     public static MainActivity ma;
+    public GameActivity ga;
 
 
     /**
@@ -346,8 +351,39 @@ public class MainActivity extends AppCompatActivity /*implements OnTouchListener
                     DrawView.instrument = 11;
                     Toast.makeText(ma, getString(R.string.takeMosaic), Toast.LENGTH_SHORT).show();
                     drawView.drawMosaic();
-                case R.id.action_snake:
-                    Toast.makeText(ma, "Snake", Toast.LENGTH_SHORT).show();
+                case R.id.draw_pifagor_fractal:
+                    Toast toast9=Toast.makeText(getApplicationContext(),
+                            "Фрактал Пифагора!",
+                            Toast.LENGTH_SHORT);
+                    toast9.setGravity(Gravity.CENTER, 0, 0);
+                    toast9.show();
+                    DrawView.instrument=19;
+                    return true;
+                case R.id.draw_mandelbrot_fractal:
+                    Toast toast11=Toast.makeText(getApplicationContext(),
+                            "Фрактал Mandelbrot!",
+                            Toast.LENGTH_SHORT);
+                    toast11.setGravity(Gravity.CENTER, 0, 0);
+                    toast11.show();
+                    DrawView.instrument=20;
+                    return true;
+                case R.id.draw_plasma:
+                    Toast toast12=Toast.makeText(getApplicationContext(),
+                            "Plasma!",
+                            Toast.LENGTH_SHORT);
+                    toast12.setGravity(Gravity.CENTER, 0, 0);
+                    toast12.show();
+                    DrawView.instrument=21;
+                    return true;
+                case R.id.draw_fern:
+                    Toast toast13=Toast.makeText(getApplicationContext(),
+                            "Fern!",
+                            Toast.LENGTH_SHORT);
+                    toast13.setGravity(Gravity.CENTER, 0, 0);
+                    toast13.show();
+                    DrawView.instrument=22;
+                    return true;
+
 
             }
 
